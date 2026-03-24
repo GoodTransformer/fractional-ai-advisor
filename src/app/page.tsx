@@ -81,10 +81,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
           <AnimatedReveal className="max-w-3xl">
             <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
-              {homePage.engagements.heading}
+              {homePage.services.heading}
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate md:text-lg">
-              {homePage.engagements.intro}
+              {homePage.services.intro}
             </p>
           </AnimatedReveal>
 
@@ -111,10 +111,10 @@ export default function HomePage() {
 
           <AnimatedReveal className="mt-10 flex flex-col gap-4 border-t border-line pt-5 md:flex-row md:items-center md:justify-between">
             <p className="max-w-xl text-sm leading-6 text-slate">
-              {homePage.engagements.note}
+              {homePage.services.note}
             </p>
-            <Link href="/engagements" className="text-link text-sm text-ink">
-              See full engagement detail
+            <Link href="/services" className="text-link text-sm text-ink">
+              See full service detail
             </Link>
           </AnimatedReveal>
         </div>

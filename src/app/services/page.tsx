@@ -3,16 +3,16 @@ import type { Metadata } from "next";
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { CTAGroup } from "@/components/cta-group";
 import { PageIntro } from "@/components/page-intro";
-import { engagementsPage, offers, siteConfig } from "@/content/site-content";
+import { offers, servicesPage, siteConfig } from "@/content/site-content";
 
 export const metadata: Metadata = {
-  title: "Engagements",
+  title: "Services",
 };
 
-export default function EngagementsPage() {
+export default function ServicesPage() {
   return (
     <>
-      <PageIntro title={engagementsPage.title} body={engagementsPage.intro} />
+      <PageIntro title={servicesPage.title} body={servicesPage.intro} />
 
       <section className="section-divider">
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12 lg:py-16">
@@ -55,7 +55,7 @@ export default function EngagementsPage() {
           </div>
 
           <AnimatedReveal className="mt-8 text-sm leading-6 text-slate">
-            {engagementsPage.close}
+            {servicesPage.close}
           </AnimatedReveal>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function EngagementsPage() {
           </AnimatedReveal>
 
           <div className="mt-10 border-t border-line">
-            {engagementsPage.sampleArc.map((item) => (
+            {servicesPage.sampleArc.map((item) => (
               <AnimatedReveal
                 key={item.phase}
                 className="grid gap-4 border-b border-line py-6 lg:grid-cols-[180px_minmax(0,1fr)]"

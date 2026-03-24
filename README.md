@@ -36,7 +36,7 @@ npm run build
 
 ## Project structure
 
-- `src/app` holds the four-page routed site: Home, Engagements, Patrick, and Book.
+- `src/app` holds the four-page routed site: Home, Services, Patrick, and Book.
 - `src/content/site-content.ts` centralises the copy and structured content.
 - `src/components` holds the reusable layout, motion, CTA, FAQ, booking, and artefact components.
 - `public/hero-scene.svg` is the full-bleed hero illustration.

@@ -21,14 +21,14 @@ export const siteConfig = {
     href: "/book",
   },
   heroSecondaryCta: {
-    label: "See engagements",
-    href: "/engagements",
+    label: "See services",
+    href: "/services",
   },
   calendarEnvName: "NEXT_PUBLIC_CLARITY_CALL_URL",
 };
 
 export const navigation: LinkItem[] = [
-  { href: "/engagements", label: "Engagements" },
+  { href: "/services", label: "Services" },
   { href: "/patrick", label: "Patrick" },
   { href: "/book", label: "Book" },
 ];
@@ -129,7 +129,7 @@ export const homePage = {
     support:
       "Some teams are experimenting. Some are not. Leadership wants progress, but ownership, guardrails, and working practice are patchy. Fractional AI Advisor is a part-time embedded role that connects direction, workflow change, and team capability.",
   },
-  engagements: {
+  services: {
     heading: "Three clear ways to buy the work.",
     intro:
       "Start with clarity, then deepen only when the work justifies it.",
@@ -174,8 +174,8 @@ export const homePage = {
   },
 };
 
-export const engagementsPage = {
-  title: "Engagements",
+export const servicesPage = {
+  title: "Services",
   intro:
     "Three routes, one operating logic: clarify the direction, change selected workflows, then keep momentum where it matters.",
   sampleArc: [
