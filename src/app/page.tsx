@@ -14,12 +14,22 @@ import {
   testimonial,
 } from "@/content/site-content";
 
+const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "";
+const isUserPagesSite =
+  repository !== "" && repository === `${repositoryOwner}.github.io`;
+const publicBasePath =
+  process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
+    ? `/${repository}`
+    : "";
+const heroImageSrc = `${publicBasePath}/hero-room.png`;
+
 export default function HomePage() {
   return (
     <>
       <section className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
         <Image
-          src="/hero-room.png"
+          src={heroImageSrc}
           alt="A sunlit workshop room with chairs facing a screen showing an AI adoption plan."
           fill
           priority
