@@ -19,14 +19,14 @@ export default function HomePage() {
     <>
       <section className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
         <Image
-          src="/hero-scene.svg"
-          alt="An executive meeting room with a long table, papers, glass, and a city-facing view."
+          src="/hero-room.png"
+          alt="A sunlit workshop room with chairs facing a screen showing an AI adoption plan."
           fill
           priority
-          className="object-cover object-center opacity-78 animate-drift"
+          className="object-cover object-[68%_center] opacity-90 animate-drift md:object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,12,17,0.18),rgba(8,12,17,0.42)_34%,rgba(8,12,17,0.82)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(255,241,228,0.12),transparent_20%),radial-gradient(circle_at_82%_18%,rgba(166,94,66,0.16),transparent_24%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,17,0.56),rgba(8,12,17,0.26)_34%,rgba(8,12,17,0.08)_68%),linear-gradient(180deg,rgba(8,12,17,0.16),rgba(8,12,17,0.08)_28%,rgba(8,12,17,0.42)_64%,rgba(8,12,17,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(255,241,228,0.16),transparent_20%),radial-gradient(circle_at_84%_18%,rgba(166,94,66,0.12),transparent_22%)]" />
 
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-end px-6 pb-16 pt-28 md:px-10 md:pb-20 lg:px-12 lg:pb-24">
           <AnimatedReveal className="max-w-5xl" stagger>
