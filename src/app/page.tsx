@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
@@ -23,34 +22,28 @@ const publicBasePath =
     ? `/${repository}`
     : "";
 const heroImageSrc = `${publicBasePath}/hero-room.png`;
+const heroBackgroundImage = `linear-gradient(90deg, rgba(8, 12, 16, 0.86) 0%, rgba(8, 12, 16, 0.74) 24%, rgba(8, 12, 16, 0.48) 42%, rgba(8, 12, 16, 0.18) 60%, rgba(8, 12, 16, 0.02) 78%), url("${heroImageSrc}")`;
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
-        <Image
-          src={heroImageSrc}
-          alt="A sunlit workshop room with chairs facing a screen showing an AI adoption plan."
-          fill
-          priority
-          className="object-cover object-[68%_center] opacity-90 animate-drift md:object-center"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,17,0.56),rgba(8,12,17,0.26)_34%,rgba(8,12,17,0.08)_68%),linear-gradient(180deg,rgba(8,12,17,0.16),rgba(8,12,17,0.08)_28%,rgba(8,12,17,0.42)_64%,rgba(8,12,17,0.82)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(255,241,228,0.16),transparent_20%),radial-gradient(circle_at_84%_18%,rgba(166,94,66,0.12),transparent_22%)]" />
-
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-end px-6 pb-16 pt-28 md:px-10 md:pb-20 lg:px-12 lg:pb-24">
-          <AnimatedReveal className="max-w-5xl" stagger>
+      <section
+        className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper"
+        style={{ backgroundImage: heroBackgroundImage }}
+      >
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-center px-6 pb-12 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-14 lg:pt-36">
+          <AnimatedReveal className="max-w-[35rem] lg:max-w-[39rem]" stagger>
             <p className="eyebrow">{homePage.hero.brand}</p>
-            <h1 className="hero-shadow mt-6 max-w-5xl font-serif text-[clamp(4.5rem,12vw,9.5rem)] leading-[0.88] text-paper">
+            <h1 className="hero-shadow mt-6 max-w-[9ch] font-serif text-[clamp(4.1rem,10vw,8.8rem)] leading-[0.9] text-paper">
               {homePage.hero.title}
             </h1>
-            <p className="mt-4 text-sm uppercase tracking-[0.24em] text-paper/72 md:text-base">
+            <p className="mt-5 text-sm uppercase tracking-[0.24em] text-paper/70 md:text-[0.95rem]">
               {homePage.hero.descriptor}
             </p>
-            <p className="mt-8 max-w-2xl text-base leading-7 text-paper/78 md:text-lg">
+            <p className="mt-8 max-w-[31rem] text-base leading-7 text-paper/78 md:text-lg">
               {homePage.hero.support}
             </p>
-            <div className="mt-10">
+            <div className="mt-9">
               <CTAGroup
                 primary={siteConfig.primaryCta}
                 secondary={siteConfig.heroSecondaryCta}
@@ -124,7 +117,7 @@ export default function HomePage() {
               {homePage.services.note}
             </p>
             <Link href="/services" className="text-link text-sm text-ink">
-              See full service detail
+              See full engagement detail
             </Link>
           </AnimatedReveal>
         </div>

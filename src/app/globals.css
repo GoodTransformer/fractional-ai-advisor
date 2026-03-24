@@ -3,12 +3,18 @@
 @tailwind utilities;
 
 :root {
+  --color-bg-dark: 8 12 16;
+  --color-text-primary: 245 241 236;
+  --color-text-secondary: 210 217 223;
+  --color-accent: 112 130 141;
+  --color-button-fill: 245 241 236;
+  --color-button-border: 218 225 230;
   --color-paper: 241 236 228;
   --color-sand: 233 226 214;
   --color-mist: 207 199 186;
   --color-ink: 18 27 34;
   --color-slate: 73 83 92;
-  --color-copper: 166 94 66;
+  --color-copper: 112 130 141;
   --color-moss: 95 108 99;
   --color-line: 17 32 43;
   --color-glow: 248 237 224;
@@ -27,7 +33,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top, rgba(166, 94, 66, 0.08), transparent 26%),
+    radial-gradient(circle at top, rgba(112, 130, 141, 0.08), transparent 26%),
     linear-gradient(180deg, #f3eee6 0%, #f0eadf 54%, #ece5db 100%);
   color: rgb(var(--color-ink));
   font-family: var(--font-sans), sans-serif;
@@ -45,7 +51,7 @@ img {
 }
 
 ::selection {
-  background: rgba(166, 94, 66, 0.18);
+  background: rgba(112, 130, 141, 0.18);
 }
 
 .skip-link {
@@ -87,7 +93,7 @@ img {
   pointer-events: none;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 18%),
-    radial-gradient(circle at 80% 15%, rgba(166, 94, 66, 0.06), transparent 18%);
+    radial-gradient(circle at 80% 15%, rgba(112, 130, 141, 0.06), transparent 18%);
 }
 
 .grain {
@@ -158,6 +164,13 @@ img {
 
 .section-divider {
   border-top: 1px solid rgb(var(--color-line) / 0.12);
+}
+
+.hero-stage {
+  background-color: rgb(var(--color-bg-dark));
+  background-position: 72% center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero-shadow {
@@ -261,5 +274,11 @@ details > summary::-webkit-details-marker {
 
   .artifact-sheet {
     transition: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-stage {
+    background-position: right center;
   }
 }
