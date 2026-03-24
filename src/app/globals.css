@@ -173,6 +173,45 @@ img {
   background-size: cover;
 }
 
+.hero-copy-enter {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy-enter > * {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  animation: heroRise 0.72s ease forwards;
+}
+
+.hero-copy-enter > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.hero-copy-enter > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.hero-copy-enter > *:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.hero-copy-enter > *:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .hero-shadow {
   text-shadow: 0 10px 46px rgba(7, 12, 16, 0.38);
 }
@@ -274,6 +313,12 @@ details > summary::-webkit-details-marker {
 
   .artifact-sheet {
     transition: none !important;
+  }
+
+  .hero-copy-enter > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
 

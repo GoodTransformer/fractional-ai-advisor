@@ -32,7 +32,7 @@ export default function HomePage() {
         style={{ backgroundImage: heroBackgroundImage }}
       >
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-center px-6 pb-12 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-14 lg:pt-36">
-          <AnimatedReveal className="max-w-[35rem] lg:max-w-[39rem]" stagger>
+          <div className="hero-copy-enter max-w-[35rem] lg:max-w-[39rem]">
             <p className="eyebrow">{homePage.hero.brand}</p>
             <h1 className="hero-shadow mt-6 max-w-[9ch] font-serif text-[clamp(4.1rem,10vw,8.8rem)] leading-[0.9] text-paper">
               {homePage.hero.title}
@@ -50,7 +50,7 @@ export default function HomePage() {
                 tone="light"
               />
             </div>
-          </AnimatedReveal>
+          </div>
         </div>
       </section>
 
