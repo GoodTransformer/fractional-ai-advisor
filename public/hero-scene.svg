@@ -1,69 +1,73 @@
 <svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1600" height="1200" fill="#101E28"/>
-  <rect width="1600" height="1200" fill="url(#roomGlow)"/>
-  <rect y="90" width="1600" height="550" fill="url(#wall)"/>
-  <rect y="640" width="1600" height="560" fill="#132431"/>
-  <rect x="130" y="120" width="1340" height="420" rx="30" fill="#173040"/>
-  <rect x="165" y="155" width="1270" height="350" rx="20" fill="url(#windowSky)"/>
-  <path d="M325 505H430V155H325V505Z" fill="#1B3545" fill-opacity="0.9"/>
-  <path d="M778 505H853V155H778V505Z" fill="#1B3545" fill-opacity="0.9"/>
-  <path d="M1180 505H1255V155H1180V505Z" fill="#1B3545" fill-opacity="0.9"/>
-  <path d="M165 275H1435" stroke="#29465A" stroke-width="8"/>
-  <path d="M165 385H1435" stroke="#29465A" stroke-width="8"/>
-  <path d="M142 768L654 650H1498L990 1184L142 768Z" fill="url(#tableTop)"/>
-  <path d="M174 789L640 683H1466L1006 1162L174 789Z" stroke="#F0E2D2" stroke-opacity="0.08" stroke-width="2"/>
-  <path d="M654 650L990 1184" stroke="#E9D1BB" stroke-opacity="0.08" stroke-width="2"/>
-  <path d="M405 732L575 696L668 816L500 848L405 732Z" fill="#F3EDE2"/>
-  <path d="M725 703L918 660L1045 807L856 848L725 703Z" fill="#E9DDCD"/>
-  <path d="M1076 690L1198 662L1276 748L1154 775L1076 690Z" fill="#ECE4D6"/>
-  <path d="M630 838L835 795L902 885L697 927L630 838Z" fill="#F7F2EA"/>
-  <path d="M610 854L816 811" stroke="#C55E32" stroke-width="4" stroke-linecap="round" stroke-opacity="0.85"/>
-  <path d="M607 878L804 836" stroke="#50606A" stroke-width="4" stroke-linecap="round" stroke-opacity="0.55"/>
-  <path d="M604 902L772 866" stroke="#50606A" stroke-width="4" stroke-linecap="round" stroke-opacity="0.55"/>
-  <path d="M904 704L1098 663L1167 740L973 781L904 704Z" fill="#182C39"/>
-  <path d="M935 694L1077 664L1138 731L996 760L935 694Z" fill="#7E8E9B"/>
-  <rect x="1098" y="823" width="186" height="186" rx="30" transform="rotate(-11 1098 823)" fill="#213A49"/>
-  <rect x="1115" y="840" width="152" height="152" rx="22" transform="rotate(-11 1115 840)" fill="#F2E8DA"/>
-  <circle cx="1198" cy="921" r="42" fill="#C55E32" fill-opacity="0.92"/>
-  <circle cx="1235" cy="885" r="11" fill="#D68D66"/>
-  <ellipse cx="365" cy="1006" rx="148" ry="82" fill="#0F1D27"/>
-  <ellipse cx="1226" cy="1058" rx="178" ry="95" fill="#0F1D27"/>
-  <ellipse cx="1435" cy="989" rx="122" ry="66" fill="#0F1D27"/>
-  <path d="M0 0H1600V1200H0V0Z" fill="url(#vignette)" fill-opacity="0.72"/>
-  <circle cx="1235" cy="262" r="178" fill="#D17950" fill-opacity="0.12"/>
-  <circle cx="415" cy="232" r="228" fill="#F3D7C1" fill-opacity="0.08"/>
-  <g opacity="0.36">
-    <circle cx="230" cy="210" r="2" fill="#F4EFE6"/>
-    <circle cx="290" cy="420" r="1.5" fill="#F4EFE6"/>
-    <circle cx="510" cy="190" r="2" fill="#F4EFE6"/>
-    <circle cx="990" cy="236" r="2" fill="#F4EFE6"/>
+  <rect width="1600" height="1200" fill="#0E171D"/>
+  <rect width="1600" height="1200" fill="url(#roomWash)"/>
+  <rect y="92" width="1600" height="560" fill="url(#wallFade)"/>
+  <rect x="118" y="112" width="1364" height="470" rx="36" fill="#132833"/>
+  <rect x="152" y="146" width="1296" height="402" rx="24" fill="url(#windowGlow)"/>
+  <path d="M372 548V146" stroke="#1A3544" stroke-width="18"/>
+  <path d="M802 548V146" stroke="#1A3544" stroke-width="18"/>
+  <path d="M1230 548V146" stroke="#1A3544" stroke-width="18"/>
+  <path d="M152 274H1448" stroke="#294756" stroke-width="8"/>
+  <path d="M152 404H1448" stroke="#294756" stroke-width="8"/>
+  <path d="M0 652H1600V1200H0V652Z" fill="url(#floorFade)"/>
+  <path d="M192 780L654 676H1456L990 1190L192 780Z" fill="url(#tableTop)"/>
+  <path d="M214 797L646 700H1430L1000 1168L214 797Z" stroke="#F5E7D7" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M472 730L598 702L684 792L557 821L472 730Z" fill="#EEE6D9"/>
+  <path d="M768 692L946 654L1048 774L872 812L768 692Z" fill="#E5DACB"/>
+  <path d="M1076 694L1205 665L1284 754L1158 782L1076 694Z" fill="#EFE7DA"/>
+  <path d="M626 842L842 796L918 896L703 941L626 842Z" fill="#F8F3EB"/>
+  <path d="M646 864L816 828" stroke="#A65E42" stroke-width="4" stroke-linecap="round"/>
+  <path d="M641 887L802 853" stroke="#4B5860" stroke-width="4" stroke-linecap="round" stroke-opacity="0.55"/>
+  <path d="M636 909L790 878" stroke="#4B5860" stroke-width="4" stroke-linecap="round" stroke-opacity="0.45"/>
+  <rect x="1128" y="820" width="186" height="186" rx="30" transform="rotate(-9 1128 820)" fill="#1B3340"/>
+  <rect x="1146" y="839" width="152" height="152" rx="22" transform="rotate(-9 1146 839)" fill="#F3EBDD"/>
+  <circle cx="1224" cy="918" r="42" fill="#A65E42"/>
+  <circle cx="1262" cy="882" r="11" fill="#CC8F70"/>
+  <path d="M294 840C294 754 352 698 426 698C500 698 562 754 562 840V1020H294V840Z" fill="#12222C"/>
+  <path d="M292 1020H564V1066C564 1102 534 1132 498 1132H358C322 1132 292 1102 292 1066V1020Z" fill="#152A35"/>
+  <path d="M1018 836C1018 750 1076 694 1152 694C1226 694 1288 750 1288 836V1020H1018V836Z" fill="#11212B"/>
+  <path d="M1016 1020H1290V1066C1290 1102 1260 1132 1224 1132H1082C1046 1132 1016 1102 1016 1066V1020Z" fill="#152A35"/>
+  <path d="M1296 862C1296 796 1340 750 1398 750C1456 750 1498 796 1498 862V1018H1296V862Z" fill="#101E27"/>
+  <path d="M1294 1018H1500V1054C1500 1088 1472 1116 1438 1116H1356C1322 1116 1294 1088 1294 1054V1018Z" fill="#162933"/>
+  <path d="M0 0H1600V1200H0V0Z" fill="url(#vignette)" fill-opacity="0.78"/>
+  <ellipse cx="1182" cy="220" rx="192" ry="158" fill="#C98563" fill-opacity="0.12"/>
+  <ellipse cx="464" cy="202" rx="238" ry="174" fill="#FFEADB" fill-opacity="0.08"/>
+  <ellipse cx="792" cy="602" rx="512" ry="60" fill="#0A1217" fill-opacity="0.35"/>
+  <g opacity="0.26">
+    <circle cx="234" cy="206" r="2" fill="#F4EFE6"/>
+    <circle cx="306" cy="418" r="1.5" fill="#F4EFE6"/>
+    <circle cx="516" cy="190" r="2" fill="#F4EFE6"/>
+    <circle cx="978" cy="236" r="2" fill="#F4EFE6"/>
     <circle cx="1334" cy="182" r="1.5" fill="#F4EFE6"/>
-    <circle cx="1380" cy="394" r="2" fill="#F4EFE6"/>
-    <circle cx="1160" cy="325" r="1.5" fill="#F4EFE6"/>
+    <circle cx="1390" cy="396" r="2" fill="#F4EFE6"/>
   </g>
   <defs>
-    <linearGradient id="wall" x1="800" y1="90" x2="800" y2="640" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#142B39"/>
-      <stop offset="1" stop-color="#0F1F2A"/>
+    <linearGradient id="wallFade" x1="800" y1="92" x2="800" y2="652" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#122733"/>
+      <stop offset="1" stop-color="#0F1D26"/>
     </linearGradient>
-    <linearGradient id="windowSky" x1="800" y1="155" x2="800" y2="505" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4A6A82"/>
-      <stop offset="0.55" stop-color="#2F4B5D"/>
-      <stop offset="1" stop-color="#1F3341"/>
+    <linearGradient id="windowGlow" x1="800" y1="146" x2="800" y2="548" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#69839A"/>
+      <stop offset="0.44" stop-color="#405B6F"/>
+      <stop offset="1" stop-color="#223947"/>
     </linearGradient>
-    <linearGradient id="tableTop" x1="820" y1="650" x2="820" y2="1184" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7A573D"/>
-      <stop offset="0.4" stop-color="#634833"/>
-      <stop offset="1" stop-color="#493628"/>
+    <linearGradient id="floorFade" x1="800" y1="652" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10202A"/>
+      <stop offset="1" stop-color="#0C141A"/>
     </linearGradient>
-    <radialGradient id="roomGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(770 88) rotate(90) scale(740 1080)">
-      <stop stop-color="#E0A882" stop-opacity="0.16"/>
-      <stop offset="0.42" stop-color="#D17950" stop-opacity="0.09"/>
-      <stop offset="1" stop-color="#101E28" stop-opacity="0"/>
+    <linearGradient id="tableTop" x1="824" y1="676" x2="824" y2="1190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7D5C41"/>
+      <stop offset="0.44" stop-color="#614733"/>
+      <stop offset="1" stop-color="#453224"/>
+    </linearGradient>
+    <radialGradient id="roomWash" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(798 88) rotate(90) scale(780 1200)">
+      <stop stop-color="#E4B08D" stop-opacity="0.12"/>
+      <stop offset="0.42" stop-color="#A65E42" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#0E171D" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 600) rotate(90) scale(720 1120)">
-      <stop stop-color="#0E1B24" stop-opacity="0"/>
-      <stop offset="1" stop-color="#0B141B"/>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 600) rotate(90) scale(728 1134)">
+      <stop stop-color="#0C161C" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0A1216"/>
     </radialGradient>
   </defs>
 </svg>

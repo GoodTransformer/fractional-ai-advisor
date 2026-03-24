@@ -2,28 +2,24 @@ import type { Metadata } from "next";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { BookingForm } from "@/components/booking-form";
-import { PageHero } from "@/components/page-hero";
-import { SectionHeading } from "@/components/section-heading";
-import { bookingContent } from "@/content/site-content";
+import { PageIntro } from "@/components/page-intro";
+import { bookingPage } from "@/content/site-content";
 
 export const metadata: Metadata = {
-  title: "Book a Call",
+  title: "Book",
 };
 
 export default function BookPage() {
   return (
     <>
-      <PageHero {...bookingContent.hero} />
+      <PageIntro title={bookingPage.title} body={bookingPage.intro} />
 
-      <section className="section-rule">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
-          <AnimatedReveal>
-            <SectionHeading
-              number="01"
-              label="Qualification"
-              heading="A short brief first, then the booking handoff."
-              body="This keeps the call grounded in the real situation: ownership, tools, workflow friction, and what success should look like inside 90 days."
-            />
+      <section className="section-divider">
+        <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12 lg:py-16">
+          <AnimatedReveal className="max-w-2xl">
+            <p className="text-base leading-7 text-slate md:text-lg">
+              {bookingPage.body}
+            </p>
           </AnimatedReveal>
           <AnimatedReveal className="mt-12">
             <BookingForm />

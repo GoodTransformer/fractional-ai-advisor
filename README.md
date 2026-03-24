@@ -36,16 +36,16 @@ npm run build
 
 ## Project structure
 
-- `src/app` holds the routed pages.
+- `src/app` holds the four-page routed site: Home, Engagements, Patrick, and Book.
 - `src/content/site-content.ts` centralises the copy and structured content.
-- `src/components` holds reusable layout, motion, CTA, FAQ, and booking components.
+- `src/components` holds the reusable layout, motion, CTA, FAQ, booking, and artefact components.
 - `public/hero-scene.svg` is the full-bleed hero illustration.
 
 ## Deployment notes
 
 - The site is static-friendly and can be deployed on Vercel or any modern Next.js host.
 - Set `NEXT_PUBLIC_CLARITY_CALL_URL` in your hosting environment to enable the live booking handoff on `/book`.
-- Proof modules and case-note slots are already structured so approved testimonials, anonymised case notes, and sample deliverables can be inserted without redesign.
+- The site is intentionally small and product-page-led: one strong homepage plus three supporting pages.
 
 ## GitHub Pages
 

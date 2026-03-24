@@ -1,37 +1,38 @@
 import Link from "next/link";
 
-type CTA = {
+type Action = {
   href: string;
   label: string;
 };
 
 type CTAGroupProps = {
-  primary: CTA;
-  secondary?: CTA;
-  light?: boolean;
+  primary: Action;
+  secondary?: Action;
+  tone?: "light" | "dark";
 };
 
-export function CTAGroup({ primary, secondary, light = false }: CTAGroupProps) {
-  const primaryClasses = light
-    ? "bg-paper text-ink hover:bg-white"
-    : "bg-copper text-paper hover:bg-[#a85231]";
-  const secondaryClasses = light
-    ? "text-paper/84 hover:text-paper"
-    : "text-ink/76 hover:text-ink";
+export function CTAGroup({
+  primary,
+  secondary,
+  tone = "dark",
+}: CTAGroupProps) {
+  const primaryClass =
+    tone === "light"
+      ? "bg-paper text-ink hover:bg-white"
+      : "bg-ink text-paper hover:bg-ink/90";
+  const secondaryClass =
+    tone === "light" ? "text-paper/84 hover:text-paper" : "text-ink/76 hover:text-ink";
 
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
       <Link
         href={primary.href}
-        className={`inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-colors ${primaryClasses}`}
+        className={`inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors ${primaryClass}`}
       >
         {primary.label}
       </Link>
       {secondary ? (
-        <Link
-          href={secondary.href}
-          className={`inline-flex items-center text-sm font-semibold ${secondaryClasses} calm-link`}
-        >
+        <Link href={secondary.href} className={`text-link text-sm ${secondaryClass}`}>
           {secondary.label}
         </Link>
       ) : null}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Newsreader, Schibsted_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "./globals.css";
@@ -8,13 +8,13 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/content/site-content";
 
-const sans = Manrope({
+const sans = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const serif = Fraunces({
+const serif = Newsreader({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.offerName}`,
   },
   description:
-    "A premium, conversion-focused site for a productised advisory offer that helps leaders turn AI intent into practical operational use.",
+    "Embedded AI strategy and adoption lead for organisations that need AI direction, workflow change, and team capability to move together.",
 };
 
 export default function RootLayout({
