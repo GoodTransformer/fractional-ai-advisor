@@ -36,45 +36,33 @@ export function SiteHeader() {
 
   return (
     <header className={classNames("fixed inset-x-0 top-0 z-50 transition-all duration-300", shellClass)}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 lg:px-12">
-        <Link href="/" className="text-sm font-medium uppercase tracking-[0.18em]">
-          {siteConfig.brand}
-        </Link>
-
-        <nav className="hidden items-center gap-8 lg:flex">
-          {navigation.map((item) => {
-            const active = pathname === item.href;
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={classNames("text-sm transition-colors", active ? "text-current" : linkClass)}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden lg:block">
-          <Link
-            href={siteConfig.primaryCta.href}
-            className={classNames(
-              "inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium transition-colors",
-              isHome && !scrolled
-                ? "border border-paper/28 bg-paper/10 text-paper hover:bg-paper/16"
-                : "bg-ink text-paper hover:bg-ink/90",
-            )}
-          >
-            Book
+      <div className="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 md:px-10 lg:px-12">
+        <div className="flex items-center gap-8 xl:gap-12">
+          <Link href="/" className="whitespace-nowrap text-sm font-medium uppercase tracking-[0.18em]">
+            {siteConfig.brand}
           </Link>
+
+          <nav className="hidden items-center gap-8 lg:flex">
+            {navigation.map((item) => {
+              const active = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={classNames("text-sm transition-colors", active ? "text-current" : linkClass)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
 
         <button
           type="button"
           onClick={() => setMenuOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 lg:hidden"
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
         >
@@ -95,17 +83,6 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <Link
-            href={siteConfig.primaryCta.href}
-            className={classNames(
-              "inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium transition-colors",
-              isHome && !scrolled
-                ? "bg-paper text-ink hover:bg-paper/90"
-                : "bg-ink text-paper hover:bg-ink/90",
-            )}
-          >
-            Book a call
-          </Link>
         </div>
       ) : null}
     </header>

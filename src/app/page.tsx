@@ -22,28 +22,33 @@ const publicBasePath =
     ? `/${repository}`
     : "";
 const heroImageSrc = `${publicBasePath}/hero-room.png`;
-const heroBackgroundImage = `linear-gradient(90deg, rgba(8, 12, 16, 0.86) 0%, rgba(8, 12, 16, 0.74) 24%, rgba(8, 12, 16, 0.48) 42%, rgba(8, 12, 16, 0.18) 60%, rgba(8, 12, 16, 0.02) 78%), url("${heroImageSrc}")`;
-
 export default function HomePage() {
   return (
     <>
       <section
         className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper"
-        style={{ backgroundImage: heroBackgroundImage }}
+        style={{ backgroundImage: `url("${heroImageSrc}")` }}
       >
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-center px-6 pb-12 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-14 lg:pt-36">
-          <div className="hero-copy-enter max-w-[35rem] lg:max-w-[39rem]">
-            <p className="eyebrow">{homePage.hero.brand}</p>
-            <h1 className="hero-shadow mt-6 max-w-[9ch] font-serif text-[clamp(4.1rem,10vw,8.8rem)] leading-[0.9] text-paper">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,16,0.9)_0%,rgba(8,12,16,0.8)_24%,rgba(8,12,16,0.56)_42%,rgba(8,12,16,0.24)_60%,rgba(8,12,16,0.05)_78%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_18%_32%,rgba(8,12,16,0.24),transparent_34%),linear-gradient(180deg,rgba(8,12,16,0.24)_0%,rgba(8,12,16,0.08)_28%,rgba(8,12,16,0.12)_100%)]"
+        />
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-6 pb-12 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-14 lg:pt-36">
+          <div className="hero-copy-enter max-w-[29rem] md:-mt-7 lg:-mt-11 lg:max-w-[33rem]">
+            <h1 className="hero-shadow max-w-[7ch] font-serif text-[clamp(3.25rem,8vw,7rem)] leading-[0.9] tracking-[-0.02em] text-paper">
               {homePage.hero.title}
             </h1>
-            <p className="mt-5 text-sm uppercase tracking-[0.24em] text-paper/70 md:text-[0.95rem]">
+            <p className="mt-4 text-[0.76rem] uppercase tracking-[0.24em] text-paper/70 md:mt-3 md:text-[0.88rem]">
               {homePage.hero.descriptor}
             </p>
-            <p className="mt-8 max-w-[31rem] text-base leading-7 text-paper/78 md:text-lg">
+            <p className="mt-5 max-w-[26rem] text-[0.98rem] leading-7 text-paper/78 md:mt-4 md:text-[1.05rem]">
               {homePage.hero.support}
             </p>
-            <div className="mt-9">
+            <div className="mt-8 md:mt-7">
               <CTAGroup
                 primary={siteConfig.primaryCta}
                 secondary={siteConfig.heroSecondaryCta}
@@ -117,7 +122,7 @@ export default function HomePage() {
               {homePage.services.note}
             </p>
             <Link href="/services" className="text-link text-sm text-ink">
-              See full engagement detail
+              See services
             </Link>
           </AnimatedReveal>
         </div>

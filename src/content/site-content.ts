@@ -21,14 +21,14 @@ export const siteConfig = {
     href: "/book",
   },
   heroSecondaryCta: {
-    label: "See engagements",
+    label: "See services",
     href: "/services",
   },
   calendarEnvName: "NEXT_PUBLIC_CLARITY_CALL_URL",
 };
 
 export const navigation: LinkItem[] = [
-  { href: "/services", label: "Engagements" },
+  { href: "/services", label: "Services" },
   { href: "/patrick", label: "Patrick" },
   { href: "/book", label: "Book" },
 ];
