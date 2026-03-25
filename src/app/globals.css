@@ -167,12 +167,11 @@ img {
 }
 
 .hero-stage {
-  background-color: rgb(var(--color-bg-dark));
-  background-position: 72% center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(112, 130, 141, 0.2), transparent 32%),
+    radial-gradient(circle at 80% 14%, rgba(248, 237, 224, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(11, 18, 24, 0.98) 0%, rgba(7, 11, 15, 1) 100%);
   isolation: isolate;
-  filter: saturate(0.94) contrast(0.97);
 }
 
 .hero-copy-enter {
@@ -184,6 +183,35 @@ img {
 .hero-copy-enter > * {
   opacity: 1;
   transform: none;
+}
+
+.hero-scene,
+.hero-robot-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(0.94) contrast(0.97);
+}
+
+.hero-scene {
+  opacity: 1;
+}
+
+.hero-robot-scene {
+  clip-path: polygon(78% 8%, 100% 8%, 100% 79%, 78% 79%);
+  opacity: 0;
+  transform: scale(1.005);
+  transition:
+    opacity 0.64s ease,
+    transform 0.88s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-robot-scene.is-visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 @keyframes heroGroupRise {
@@ -306,10 +334,16 @@ details > summary::-webkit-details-marker {
     transform: none !important;
     animation: none !important;
   }
+
+  .hero-robot-scene {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 @media (min-width: 768px) {
   .hero-stage {
-    background-position: right center;
+    background:
+      linear-gradient(180deg, rgba(8, 12, 16, 0.68) 0%, rgba(8, 12, 16, 0.54) 100%);
   }
 }
