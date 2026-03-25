@@ -37,18 +37,15 @@ export function SiteHeader() {
   return (
     <header
       className={classNames(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,color,backdrop-filter] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,color,backdrop-filter] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
         shellClass,
       )}
     >
-      <div
-        key={pathname}
-        className="header-content-enter mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 md:px-10 lg:px-12"
-      >
+      <div className="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 md:px-10 lg:px-12">
         <div className="flex items-center gap-8 xl:gap-12">
           <Link
             href="/"
-            className="whitespace-nowrap text-sm font-medium uppercase tracking-[0.18em] transition-[color,opacity] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+            className="whitespace-nowrap text-sm font-medium uppercase tracking-[0.18em] transition-[color,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           >
             {siteConfig.brand}
           </Link>
@@ -62,7 +59,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={classNames(
-                    "text-sm transition-[color,opacity] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]",
+                    "text-sm transition-[color,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                     active ? "text-current" : linkClass,
                   )}
                 >
@@ -76,7 +73,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={() => setMenuOpen((value) => !value)}
-          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 transition-[color,border-color,background-color] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-current/15 transition-[color,border-color,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden"
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
         >
