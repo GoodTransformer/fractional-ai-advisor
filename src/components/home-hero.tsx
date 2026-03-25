@@ -32,10 +32,10 @@ export function HomeHero({
   const heroRef = useRef<HTMLElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const revealProgressRef = useRef(0);
-  const revealStart = 0.67;
-  const revealEnd = 0.79;
-  const revealYMin = 0.14;
-  const revealYMax = 0.9;
+  const revealStart = 0.58;
+  const revealEnd = 0.82;
+  const revealYMin = 0.02;
+  const revealYMax = 0.98;
 
   const baseSceneStyle = {
     backgroundImage: `url("${backgroundImageSrc}")`,
