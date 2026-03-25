@@ -82,7 +82,7 @@ export const offers: Offer[] = [
     ],
   },
   {
-    name: "Fractional AI Advisor Retainer",
+    name: "Fractional Retainer",
     duration: "3-month minimum",
     purpose: "For ongoing cross-functional momentum and judgement.",
     outputs: [

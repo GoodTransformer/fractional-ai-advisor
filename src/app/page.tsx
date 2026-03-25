@@ -94,15 +94,6 @@ export default function HomePage() {
               </AnimatedReveal>
             ))}
           </div>
-
-          <AnimatedReveal className="mt-10 flex flex-col gap-4 border-t border-line pt-5 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-xl text-sm leading-6 text-slate">
-              {homePage.services.note}
-            </p>
-            <Link href="/services" className="text-link text-sm text-ink">
-              See services
-            </Link>
-          </AnimatedReveal>
         </div>
       </section>
 
