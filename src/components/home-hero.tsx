@@ -65,7 +65,7 @@ export function HomeHero({
       />
       <div
         aria-hidden="true"
-        className="hero-window-trigger peer absolute inset-y-0 left-[72%] right-0 z-[1] hidden lg:block"
+        className="hero-window-trigger peer absolute inset-y-0 left-[64%] right-0 z-[1] hidden lg:block"
       />
       <div
         aria-hidden="true"
