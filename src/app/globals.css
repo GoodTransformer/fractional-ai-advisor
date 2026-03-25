@@ -177,12 +177,15 @@ img {
 .hero-copy-enter {
   position: relative;
   z-index: 1;
-  animation: heroFadeIn 0.42s ease-out both;
 }
 
 .hero-copy-enter > * {
   opacity: 1;
   transform: none;
+}
+
+.hero-title-lock {
+  min-height: 15.5rem;
 }
 
 .hero-scene,
@@ -213,16 +216,6 @@ img {
 .hero-robot-scene.is-visible {
   opacity: 1;
   transform: scale(1);
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 .hero-shadow {
@@ -344,5 +337,15 @@ details > summary::-webkit-details-marker {
   .hero-stage {
     background:
       linear-gradient(180deg, rgba(8, 12, 16, 0.68) 0%, rgba(8, 12, 16, 0.54) 100%);
+  }
+
+  .hero-title-lock {
+    min-height: 20.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title-lock {
+    min-height: 22.75rem;
   }
 }

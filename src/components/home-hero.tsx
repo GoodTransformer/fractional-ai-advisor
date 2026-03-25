@@ -85,12 +85,14 @@ export function HomeHero({
       />
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-6 pb-12 pt-28 md:px-10 md:pb-16 md:pt-32 lg:px-14 lg:pt-36">
         <div className="hero-copy-enter max-w-[29rem] md:-mt-7 lg:-mt-11 lg:max-w-[33rem]">
-          <h1 className="hero-shadow max-w-[7ch] font-serif text-[clamp(3.25rem,8vw,7rem)] leading-[0.9] tracking-[-0.02em] text-paper">
-            {title}
-          </h1>
-          <p className="mt-4 text-[0.76rem] uppercase tracking-[0.24em] text-paper/70 md:mt-3 md:text-[0.88rem]">
-            {descriptor}
-          </p>
+          <div className="hero-title-lock">
+            <h1 className="hero-shadow max-w-[7ch] font-serif text-[clamp(3.25rem,8vw,7rem)] leading-[0.9] tracking-[-0.02em] text-paper">
+              {title}
+            </h1>
+            <p className="mt-4 text-[0.76rem] uppercase tracking-[0.24em] text-paper/70 md:mt-3 md:text-[0.88rem]">
+              {descriptor}
+            </p>
+          </div>
           <p className="mt-5 max-w-[26rem] text-[0.98rem] leading-7 text-paper/78 md:mt-4 md:text-[1.05rem]">
             {support}
           </p>
