@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import type { CSSProperties } from "react";
 
 import { CTAGroup } from "@/components/cta-group";
@@ -30,7 +27,6 @@ export function HomeHero({
   primaryCta,
   secondaryCta,
 }: HomeHeroProps) {
-  const [revealed, setRevealed] = useState(false);
   const baseSceneStyle = {
     backgroundImage: `url("${backgroundImageSrc}")`,
   } satisfies CSSProperties;
@@ -39,23 +35,23 @@ export function HomeHero({
   } satisfies CSSProperties;
 
   return (
-    <section
-      className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper"
-      onPointerLeave={() => setRevealed(false)}
-      onPointerMove={(event) => {
-        if (event.pointerType === "touch") {
-          return;
-        }
-
-        const bounds = event.currentTarget.getBoundingClientRect();
-        const x = (event.clientX - bounds.left) / bounds.width;
-        const inRevealZone = x >= 0.72;
-
-        setRevealed((current) =>
-          current === inRevealZone ? current : inRevealZone,
-        );
-      }}
-    >
+    <section className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+      <Image
+        src={backgroundImageSrc}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute h-px w-px opacity-0"
+        width={1}
+        height={1}
+        unoptimized
+        priority
+        sizes="1px"
+      />
+      <div
+        aria-hidden="true"
+        className="hero-scene absolute inset-0 hidden md:block"
+        style={baseSceneStyle}
+      />
       <Image
         src={robotSceneSrc}
         alt=""
@@ -64,15 +60,16 @@ export function HomeHero({
         width={1}
         height={1}
         unoptimized
+        loading="eager"
+        sizes="1px"
       />
       <div
         aria-hidden="true"
-        className="hero-scene absolute inset-0 hidden md:block"
-        style={baseSceneStyle}
+        className="hero-window-trigger peer absolute inset-y-0 left-[72%] right-0 z-[1] hidden lg:block"
       />
       <div
         aria-hidden="true"
-        className={`hero-robot-scene hidden md:block${revealed ? " is-visible" : ""}`}
+        className="hero-robot-scene hidden lg:block peer-hover:opacity-100 peer-hover:scale-100"
         style={robotSceneStyle}
       />
       <div

@@ -22,8 +22,8 @@ const publicBasePath =
   process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
     ? `/${repository}`
     : "";
-const heroImageSrc = `${publicBasePath}/hero-room.png`;
-const heroRobotSceneSrc = `${publicBasePath}/hero-room-robot.png`;
+const heroImageSrc = `${publicBasePath}/hero-room.jpg`;
+const heroRobotSceneSrc = `${publicBasePath}/hero-room-robot.jpg`;
 export default function HomePage() {
   return (
     <>

@@ -203,6 +203,10 @@ img {
   opacity: 1;
 }
 
+.hero-window-trigger {
+  cursor: default;
+}
+
 .hero-robot-scene {
   clip-path: polygon(78% 8%, 100% 8%, 100% 79%, 78% 79%);
   opacity: 0;
@@ -211,11 +215,6 @@ img {
   transition:
     opacity 0.64s ease,
     transform 0.88s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.hero-robot-scene.is-visible {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .hero-shadow {
