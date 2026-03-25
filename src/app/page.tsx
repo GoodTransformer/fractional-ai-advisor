@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { ArtefactDeck } from "@/components/artefact-deck";
+import { ClientLogoStrip } from "@/components/client-logo-strip";
 import { CTAGroup } from "@/components/cta-group";
 import { FAQList } from "@/components/faq-list";
 import { HomeHero } from "@/components/home-hero";
@@ -98,38 +99,58 @@ export default function HomePage() {
       </section>
 
       <section className="section-divider">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:gap-16 xl:gap-20">
-            <AnimatedReveal>
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-[4.75rem] lg:px-12 lg:py-20">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.74fr)_minmax(0,1.26fr)] lg:items-start lg:gap-16 xl:gap-20">
+            <AnimatedReveal className="max-w-lg">
               <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
                 {homePage.patrick.heading}
               </h2>
-              <p className="mt-6 max-w-lg text-base leading-7 text-slate md:text-lg">
+              <p className="mt-5 max-w-[29rem] text-base leading-7 text-slate md:text-lg">
                 {homePage.patrick.body}
               </p>
-              <Link href="/patrick" className="text-link mt-8 text-sm text-ink">
+              <Link href="/patrick" className="text-link mt-7 text-sm text-ink">
                 More on Patrick
               </Link>
             </AnimatedReveal>
 
-            <AnimatedReveal className="flex h-full flex-col">
-              <div className="border-t border-line pt-5">
-                <blockquote className="max-w-[42rem]">
-                  <p className="font-serif text-3xl leading-tight text-ink md:text-[2.2rem]">
-                    “{testimonial.quote}”
-                  </p>
-                  <footer className="mt-4 text-sm text-slate">
-                    {testimonial.attribution}
-                  </footer>
-                </blockquote>
-                <p className="mt-7 max-w-[31rem] text-sm leading-6 text-slate">
-                  {proofSignals.experience}
+            <AnimatedReveal className="max-w-[42rem] lg:justify-self-end">
+              <blockquote className="max-w-[34rem]">
+                <p className="font-serif text-[clamp(2rem,4vw,3.35rem)] leading-[1.04] text-ink">
+                  “{testimonial.quote}”
                 </p>
-              </div>
+                <footer className="mt-4 text-sm text-slate">
+                  {testimonial.attribution}
+                </footer>
+              </blockquote>
 
-              <div className="mt-10 lg:mt-auto">
-                <ArtefactDeck items={proofSignals.artefacts} />
+              <div className="mt-8 max-w-[30rem]">
+                <p className="page-eyebrow text-ink/54">{proofSignals.label}</p>
+                <div className="mt-5">
+                  <ClientLogoStrip
+                    items={proofSignals.organisations}
+                    assetBasePath={publicBasePath}
+                  />
+                </div>
               </div>
+            </AnimatedReveal>
+          </div>
+
+          <div className="mt-16 grid gap-14 lg:mt-20 lg:grid-cols-[minmax(0,0.66fr)_minmax(0,1.34fr)] lg:items-start lg:gap-14 xl:gap-20">
+            <AnimatedReveal className="max-w-sm lg:pt-8">
+              <p className="page-eyebrow">{homePage.patrick.frame.label}</p>
+              <h3 className="mt-4 font-serif text-3xl leading-tight text-ink md:text-[2.2rem]">
+                {homePage.patrick.frame.heading}
+              </h3>
+              <p className="mt-5 max-w-[23rem] text-sm leading-7 text-slate md:text-base">
+                {homePage.patrick.frame.body}
+              </p>
+              <p className="mt-5 max-w-[22rem] text-sm leading-6 text-ink/76">
+                {homePage.patrick.frame.kicker}
+              </p>
+            </AnimatedReveal>
+
+            <AnimatedReveal>
+              <ArtefactDeck items={proofSignals.artefacts} />
             </AnimatedReveal>
           </div>
         </div>

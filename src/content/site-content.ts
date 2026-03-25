@@ -19,6 +19,15 @@ export type ProofArtefact = {
   rows: string[];
 };
 
+export type ProofOrganisation = {
+  name: string;
+  slug: string;
+  src: string;
+  width: number;
+  height: number;
+  maxWidth: number;
+};
+
 export const siteConfig = {
   offerName: "Fractional AI Advisor",
   descriptor: "Embedded AI strategy and adoption lead",
@@ -115,8 +124,41 @@ export const testimonial = {
 };
 
 export const proofSignals = {
-  experience:
-    "Selected experience spans enterprise, startup, charity, and cultural contexts, including work with leaders at Google, SAP, Adobe, Microsoft, and Vodafone.",
+  label: "Worked with leaders at",
+  organisations: [
+    {
+      name: "OneAdvanced",
+      slug: "oneadvanced",
+      src: "/logos/oneadvanced.svg",
+      width: 640,
+      height: 80,
+      maxWidth: 8.8,
+    },
+    {
+      name: "Sana Commerce",
+      slug: "sana-commerce",
+      src: "/logos/sana-commerce.svg",
+      width: 92,
+      height: 20,
+      maxWidth: 6.3,
+    },
+    {
+      name: "Google",
+      slug: "google",
+      src: "/logos/google.svg",
+      width: 74,
+      height: 24,
+      maxWidth: 5.1,
+    },
+    {
+      name: "Microsoft",
+      slug: "microsoft",
+      src: "/logos/microsoft.svg",
+      width: 216,
+      height: 46,
+      maxWidth: 5.6,
+    },
+  ] satisfies ProofOrganisation[],
   artefacts: [
     {
       title: "AI direction brief",
@@ -167,7 +209,15 @@ export const homePage = {
   patrick: {
     heading: "Patrick Hussey",
     body:
-      "Patrick works between leadership, operations, and teams. The job is to give AI direction a cadence, turn pilots into working practice, and leave capability inside the business. Good Transformer is the umbrella brand; the judgement you hire is Patrick’s.",
+      "Patrick works between leadership, operations and teams. The job is to turn AI direction into working practice and leave capability inside the business. Good Transformer is the umbrella brand. The judgement you hire is Patrick’s.",
+    frame: {
+      label: "How the work shows up",
+      heading: "Work that becomes part of how the business runs",
+      body:
+        "The job is not just to set direction, but to leave working structures behind. These are the documents teams actually use to decide, act, and stay aligned.",
+      kicker:
+        "Not a deck. Not a one-off plan. Something the business can run on.",
+    },
   },
   faqs: [
     {

@@ -242,13 +242,69 @@ img {
   transform: scaleX(1);
 }
 
+.client-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 0.8rem 1.2rem;
+  align-items: center;
+  justify-content: start;
+  max-width: 29rem;
+}
+
+.client-logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 2rem;
+  max-width: var(--client-logo-max-width);
+  transition: opacity 0.2s ease;
+}
+
+.client-logo-cell.is-hidden {
+  visibility: hidden;
+}
+
+.client-logo-cell--slot-5 {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.client-logo-strip--four .client-logo-cell--slot-4 {
+  grid-column: auto;
+  justify-self: auto;
+}
+
+.client-logo-image {
+  display: block;
+  height: 1.45rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: grayscale(1) saturate(0) brightness(0.2) contrast(1.04);
+}
+
+.client-logo-cell--oneadvanced .client-logo-image {
+  height: 1.18rem;
+}
+
+.client-logo-cell--sap .client-logo-image {
+  height: 1.58rem;
+  opacity: 0.74;
+}
+
+.client-logo-cell--microsoft .client-logo-image {
+  height: 1.36rem;
+}
+
 .artifact-stack {
   position: relative;
-  width: calc(100% + 1.75rem);
-  max-width: 36.5rem;
+  width: min(100%, 34rem);
   min-height: 25rem;
-  margin-top: 1.4rem;
-  margin-left: -0.75rem;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   isolation: isolate;
 }
 
@@ -491,12 +547,72 @@ details > summary::-webkit-details-marker {
     min-height: 20.5rem;
   }
 
+  .client-logo-strip {
+    grid-template-columns: repeat(6, minmax(0, max-content));
+    gap: 0.95rem 1.35rem;
+  }
+
+  .client-logo-strip--four {
+    grid-template-columns: repeat(4, minmax(0, max-content));
+    gap: 0.95rem 1.5rem;
+  }
+
+  .client-logo-cell {
+    min-height: 2.15rem;
+  }
+
+  .client-logo-cell--slot-1 {
+    grid-column: 1 / span 2;
+  }
+
+  .client-logo-cell--slot-2 {
+    grid-column: 3 / span 2;
+  }
+
+  .client-logo-cell--slot-3 {
+    grid-column: 5 / span 2;
+  }
+
+  .client-logo-cell--slot-4 {
+    grid-column: 2 / span 2;
+    justify-self: center;
+  }
+
+  .client-logo-cell--slot-5 {
+    grid-column: 4 / span 2;
+    justify-self: center;
+  }
+
+  .client-logo-strip--four .client-logo-cell--slot-1,
+  .client-logo-strip--four .client-logo-cell--slot-2,
+  .client-logo-strip--four .client-logo-cell--slot-3,
+  .client-logo-strip--four .client-logo-cell--slot-4 {
+    grid-column: auto;
+    justify-self: auto;
+  }
+
+  .client-logo-image {
+    height: 1.62rem;
+  }
+
+  .client-logo-cell--oneadvanced .client-logo-image {
+    height: 1.24rem;
+  }
+
+  .client-logo-cell--sap .client-logo-image {
+    height: 1.72rem;
+  }
+
+  .client-logo-cell--microsoft .client-logo-image {
+    height: 1.46rem;
+  }
+
   .artifact-stack {
-    width: calc(100% + 3rem);
-    max-width: 40rem;
+    width: min(100%, 39rem);
     min-height: 30rem;
-    margin-top: 1.8rem;
-    margin-left: -1.25rem;
+    margin-top: 1.5rem;
+    margin-left: 0;
+    margin-right: auto;
   }
 
   .artifact-sheet {
@@ -544,12 +660,11 @@ details > summary::-webkit-details-marker {
   }
 
   .artifact-stack {
-    width: calc(100% + 6.5rem);
-    max-width: 47rem;
-    min-height: 37rem;
-    margin-top: 2rem;
-    margin-left: -4.5rem;
-    margin-right: -1.5rem;
+    width: min(100%, 43rem);
+    min-height: 36rem;
+    margin-top: 1.4rem;
+    margin-left: -1.6rem;
+    margin-right: 0;
   }
 
   .artifact-sheet {
@@ -564,20 +679,20 @@ details > summary::-webkit-details-marker {
 
   .artifact-sheet--scorecard {
     top: 4%;
-    right: 1%;
-    width: 59%;
+    right: 4%;
+    width: 57%;
   }
 
   .artifact-sheet--playbook {
     top: 33%;
-    left: 8%;
+    left: 10%;
     width: 64%;
   }
 
   .artifact-sheet--governance {
-    right: -2%;
+    right: 2%;
     bottom: -1%;
-    width: 79%;
+    width: 75%;
     min-height: 56%;
     padding: 1.7rem 1.8rem 1.65rem;
   }
