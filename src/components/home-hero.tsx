@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react";
 
 import { CTAGroup } from "@/components/cta-group";
 
@@ -27,15 +29,87 @@ export function HomeHero({
   primaryCta,
   secondaryCta,
 }: HomeHeroProps) {
+  const heroRef = useRef<HTMLElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const revealProgressRef = useRef(0);
+  const revealStart = 0.67;
+  const revealEnd = 0.79;
+  const revealYMin = 0.14;
+  const revealYMax = 0.9;
+
   const baseSceneStyle = {
     backgroundImage: `url("${backgroundImageSrc}")`,
   } satisfies CSSProperties;
   const robotSceneStyle = {
     backgroundImage: `url("${robotSceneSrc}")`,
   } satisfies CSSProperties;
+  const heroStyle = {
+    "--robot-opacity": 0,
+    "--robot-scale": 1.005,
+  } as CSSProperties;
+
+  useEffect(() => {
+    return () => {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  const setRevealProgress = (nextProgress: number) => {
+    const progress = Math.max(0, Math.min(1, nextProgress));
+
+    if (Math.abs(progress - revealProgressRef.current) < 0.01) {
+      return;
+    }
+
+    revealProgressRef.current = progress;
+
+    if (animationFrameRef.current !== null) {
+      window.cancelAnimationFrame(animationFrameRef.current);
+    }
+
+    animationFrameRef.current = window.requestAnimationFrame(() => {
+      const hero = heroRef.current;
+
+      if (!hero) {
+        return;
+      }
+
+      hero.style.setProperty("--robot-opacity", progress.toFixed(3));
+      hero.style.setProperty("--robot-scale", (1.005 - progress * 0.005).toFixed(4));
+    });
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (window.innerWidth < 1024 || !heroRef.current) {
+      return;
+    }
+
+    const bounds = heroRef.current.getBoundingClientRect();
+    const xRatio = (event.clientX - bounds.left) / bounds.width;
+    const yRatio = (event.clientY - bounds.top) / bounds.height;
+
+    if (yRatio < revealYMin || yRatio > revealYMax) {
+      setRevealProgress(0);
+      return;
+    }
+
+    setRevealProgress((xRatio - revealStart) / (revealEnd - revealStart));
+  };
+
+  const handlePointerLeave = () => {
+    setRevealProgress(0);
+  };
 
   return (
-    <section className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+    <section
+      ref={heroRef}
+      className="hero-stage relative min-h-[100svh] overflow-hidden bg-ink text-paper"
+      style={heroStyle}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+    >
       <Image
         src={backgroundImageSrc}
         alt=""
@@ -65,11 +139,7 @@ export function HomeHero({
       />
       <div
         aria-hidden="true"
-        className="hero-window-trigger peer absolute inset-y-0 left-[64%] right-0 z-[1] hidden lg:block"
-      />
-      <div
-        aria-hidden="true"
-        className="hero-robot-scene hidden lg:block peer-hover:opacity-100 peer-hover:scale-100"
+        className="hero-robot-scene hidden lg:block"
         style={robotSceneStyle}
       />
       <div
