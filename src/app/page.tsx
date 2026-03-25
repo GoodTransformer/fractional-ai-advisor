@@ -99,7 +99,7 @@ export default function HomePage() {
 
       <section className="section-divider">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
-          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+          <div className="grid gap-16 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:gap-16 xl:gap-20">
             <AnimatedReveal>
               <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
                 {homePage.patrick.heading}
@@ -112,19 +112,24 @@ export default function HomePage() {
               </Link>
             </AnimatedReveal>
 
-            <AnimatedReveal className="grid gap-10">
-              <blockquote className="border-t border-line pt-5">
-                <p className="font-serif text-3xl leading-tight text-ink md:text-[2.2rem]">
-                  “{testimonial.quote}”
+            <AnimatedReveal className="flex h-full flex-col">
+              <div className="border-t border-line pt-5">
+                <blockquote className="max-w-[42rem]">
+                  <p className="font-serif text-3xl leading-tight text-ink md:text-[2.2rem]">
+                    “{testimonial.quote}”
+                  </p>
+                  <footer className="mt-4 text-sm text-slate">
+                    {testimonial.attribution}
+                  </footer>
+                </blockquote>
+                <p className="mt-7 max-w-[31rem] text-sm leading-6 text-slate">
+                  {proofSignals.experience}
                 </p>
-                <footer className="mt-4 text-sm text-slate">{testimonial.attribution}</footer>
-              </blockquote>
-
-              <div className="grid gap-4 border-t border-line pt-5 text-sm leading-6 text-slate">
-                <p>{proofSignals.experience}</p>
               </div>
 
-              <ArtefactDeck items={proofSignals.artefacts} />
+              <div className="mt-10 lg:mt-auto">
+                <ArtefactDeck items={proofSignals.artefacts} />
+              </div>
             </AnimatedReveal>
           </div>
         </div>

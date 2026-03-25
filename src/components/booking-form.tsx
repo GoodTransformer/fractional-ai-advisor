@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { startTransition, useState, type FormEvent } from "react";
 
 import { bookingForm, siteConfig } from "@/content/site-content";
@@ -21,11 +20,54 @@ const defaultState: FormState = {
   outcome: "",
 };
 
+type DeliveryMode = "endpoint" | "email" | "manual";
+
+function getSafeHttpUrl(value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return "";
+  }
+
+  try {
+    const url = new URL(trimmed);
+
+    return url.protocol === "https:" || url.protocol === "http:"
+      ? url.toString()
+      : "";
+  } catch {
+    return "";
+  }
+}
+
+function getMailtoHref(email: string, subject: string, body: string) {
+  const trimmed = email.trim();
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+    return "";
+  }
+
+  const search = new URLSearchParams({
+    subject,
+    body,
+  });
+
+  return `mailto:${trimmed}?${search.toString()}`;
+}
+
 export function BookingForm() {
   const [form, setForm] = useState<FormState>(defaultState);
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
-  const calendarUrl = process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("manual");
+  const calendarUrl = getSafeHttpUrl(
+    process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
+  );
+  const briefEndpoint = getSafeHttpUrl(
+    process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ?? "",
+  );
 
   const summary = [
     `Organisation size: ${form.organisationSize || "Not provided"}`,
@@ -36,6 +78,11 @@ export function BookingForm() {
     `Tools in use: ${form.tools.trim() || "Not provided"}`,
     `90-day outcome: ${form.outcome.trim() || "Not provided"}`,
   ].join("\n");
+  const briefEmailHref = getMailtoHref(
+    process.env.NEXT_PUBLIC_BOOKING_BRIEF_EMAIL ?? "",
+    "AI Clarity Call intake",
+    summary,
+  );
 
   const canSubmit =
     Boolean(form.organisationSize) &&
@@ -67,9 +114,62 @@ export function BookingForm() {
     }
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    startTransition(() => setSubmitted(true));
+
+    if (!canSubmit || isSubmitting) {
+      return;
+    }
+
+    setSubmitError("");
+    setCopied(false);
+    setIsSubmitting(true);
+
+    const briefPayload = {
+      source: siteConfig.offerName,
+      submittedAt: new Date().toISOString(),
+      organisationSize: form.organisationSize,
+      sector: form.sector,
+      currentState: form.currentState,
+      tools: form.tools.trim(),
+      outcome: form.outcome.trim(),
+      summary,
+    };
+
+    try {
+      let nextMode: DeliveryMode = "manual";
+
+      if (briefEndpoint) {
+        const response = await fetch(briefEndpoint, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(briefPayload),
+        });
+
+        if (!response.ok) {
+          throw new Error("Brief handoff failed.");
+        }
+
+        nextMode = "endpoint";
+      } else if (briefEmailHref) {
+        nextMode = "email";
+        window.location.assign(briefEmailHref);
+      }
+
+      startTransition(() => {
+        setDeliveryMode(nextMode);
+        setSubmitted(true);
+      });
+    } catch {
+      setSubmitError(
+        "The brief could not be handed off from this page. Please try again or use the copy option below.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -162,15 +262,20 @@ export function BookingForm() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="submit"
-              disabled={!canSubmit}
+              disabled={!canSubmit || isSubmitting}
               className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper transition enabled:hover:bg-ink/90 disabled:cursor-not-allowed disabled:bg-ink/35"
             >
-              Continue
+              {isSubmitting ? "Preparing brief..." : "Continue"}
             </button>
             <p className="text-sm text-slate">
               {siteConfig.primaryCta.label} follows this short brief.
             </p>
           </div>
+          {submitError ? (
+            <p aria-live="polite" className="text-sm leading-6 text-[rgb(136,63,42)]">
+              {submitError}
+            </p>
+          ) : null}
         </div>
       </form>
 
@@ -191,36 +296,63 @@ export function BookingForm() {
           </div>
         ) : (
           <div className="max-w-sm">
-            <p className="page-eyebrow">Brief ready</p>
+            <p className="page-eyebrow">
+              {deliveryMode === "endpoint"
+                ? "Brief delivered"
+                : deliveryMode === "email"
+                  ? "Draft opened"
+                  : "Brief ready"}
+            </p>
             <p className="mt-4 font-serif text-3xl leading-tight text-ink">
-              Review it, then continue to scheduling.
+              {deliveryMode === "endpoint"
+                ? "Your context is on the way. Continue when you are ready."
+                : deliveryMode === "email"
+                  ? "Send the drafted note, then continue to scheduling."
+                  : "Copy the brief, then continue to scheduling."}
             </p>
             <p className="mt-5 whitespace-pre-line text-sm leading-6 text-slate">
               {summary}
             </p>
             <div className="mt-6 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition hover:bg-white/50"
-              >
-                {copied ? "Brief copied" : "Copy brief"}
-              </button>
+              {deliveryMode !== "endpoint" ? (
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition hover:bg-white/50"
+                >
+                  {copied ? "Brief copied" : "Copy brief"}
+                </button>
+              ) : null}
+              {deliveryMode === "email" && briefEmailHref ? (
+                <a
+                  href={briefEmailHref}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition hover:bg-white/50"
+                >
+                  Open draft email again
+                </a>
+              ) : null}
               {calendarUrl ? (
-                <Link
+                <a
                   href={calendarUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex min-h-11 items-center justify-center rounded-full bg-copper px-5 text-sm font-medium text-paper transition hover:bg-copper/90"
                 >
                   Continue to scheduling
-                </Link>
+                </a>
               ) : (
                 <p className="text-sm leading-6 text-slate">
                   Add <code>{siteConfig.calendarEnvName}</code> to enable the
                   live scheduling handoff on this page.
                 </p>
               )}
+              {deliveryMode === "manual" ? (
+                <p className="text-sm leading-6 text-slate">
+                  Add <code>{siteConfig.briefEndpointEnvName}</code> for automatic
+                  brief delivery, or <code>{siteConfig.briefEmailEnvName}</code> for an
+                  email-draft fallback.
+                </p>
+              ) : null}
             </div>
           </div>
         )}

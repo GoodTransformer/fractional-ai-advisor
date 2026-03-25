@@ -12,6 +12,13 @@ export type Offer = {
   cadence?: string[];
 };
 
+export type ProofArtefact = {
+  title: string;
+  label: string;
+  subtitle: string;
+  rows: string[];
+};
+
 export const siteConfig = {
   offerName: "Fractional AI Advisor",
   descriptor: "Embedded AI strategy and adoption lead",
@@ -25,6 +32,8 @@ export const siteConfig = {
     href: "/services",
   },
   calendarEnvName: "NEXT_PUBLIC_CLARITY_CALL_URL",
+  briefEndpointEnvName: "NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT",
+  briefEmailEnvName: "NEXT_PUBLIC_BOOKING_BRIEF_EMAIL",
 };
 
 export const navigation: LinkItem[] = [
@@ -109,11 +118,31 @@ export const proofSignals = {
   experience:
     "Selected experience spans enterprise, startup, charity, and cultural contexts, including work with leaders at Google, SAP, Adobe, Microsoft, and Vodafone.",
   artefacts: [
-    "AI direction brief",
-    "Use-case scorecard",
-    "Team playbook",
-    "Governance pack",
-  ],
+    {
+      title: "AI direction brief",
+      label: "Leadership direction",
+      subtitle: "Priority decisions, sponsor cadence, and the next 90 days.",
+      rows: ["Decision themes", "Use-case order", "Sponsor rhythm"],
+    },
+    {
+      title: "Use-case scorecard",
+      label: "Portfolio review",
+      subtitle: "Scored against value, readiness, and delivery risk.",
+      rows: ["Value", "Readiness", "Risk"],
+    },
+    {
+      title: "Team playbook",
+      label: "Working practice",
+      subtitle: "Workflow patterns, quality checks, and champion support.",
+      rows: ["Prompt patterns", "Checks in flow", "Escalation notes"],
+    },
+    {
+      title: "Governance pack",
+      label: "Operational guardrails",
+      subtitle: "Approved tools, do-not-paste rules, escalation routes, and plain-English guidance.",
+      rows: ["Approved tool set", "Sensitive-data handling", "Escalation route"],
+    },
+  ] satisfies ProofArtefact[],
 };
 
 export const homePage = {
@@ -233,7 +262,7 @@ export const bookingPage = {
   intro:
     "Start with a short intake so the call can deal with the real situation, not a generic AI conversation.",
   body:
-    "You will be asked about organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. If there is a smaller, better starting point than a retainer, that is the recommendation.",
+    "You will be asked about organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. The brief is handed over before scheduling so the call starts with the real context.",
 };
 
 export const bookingForm = {

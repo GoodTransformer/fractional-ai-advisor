@@ -1,31 +1,36 @@
+import type { ProofArtefact } from "@/content/site-content";
+
 type ArtefactDeckProps = {
-  items: string[];
+  items: ProofArtefact[];
 };
+
+const sheetClasses = [
+  "artifact-sheet artifact-sheet--direction",
+  "artifact-sheet artifact-sheet--scorecard",
+  "artifact-sheet artifact-sheet--playbook",
+  "artifact-sheet artifact-sheet--governance",
+] as const;
 
 export function ArtefactDeck({ items }: ArtefactDeckProps) {
   return (
-    <div className="artifact-stack mt-10 md:mt-0">
+    <div className="artifact-stack" aria-label="Example deliverables">
       {items.map((item, index) => (
-        <div
-          key={item}
-          className="artifact-sheet rounded-[1.8rem] p-5"
-          style={{
-            bottom: `${index * 0.65}rem`,
-            right: `${index * 0.55}rem`,
-            transform: `rotate(${[-4, -1, 2, 4][index] ?? 0}deg)`,
-            zIndex: index + 1,
-          }}
+        <article
+          key={item.title}
+          className={sheetClasses[index] ?? "artifact-sheet"}
         >
-          <p className="page-eyebrow text-ink/42">Sample deliverable</p>
-          <h3 className="mt-5 max-w-[12rem] font-serif text-2xl leading-tight text-ink">
-            {item}
-          </h3>
-          <div className="mt-8 space-y-3">
-            <div className="artifact-sheet-line" />
-            <div className="artifact-sheet-line w-11/12" />
-            <div className="artifact-sheet-line w-4/5" />
+          <p className="artifact-sheet-label">{item.label}</p>
+          <h3 className="artifact-sheet-title">{item.title}</h3>
+          <p className="artifact-sheet-subtitle">{item.subtitle}</p>
+          <div className="artifact-sheet-lines">
+            {item.rows.map((row) => (
+              <div key={row} className="artifact-sheet-row">
+                <span>{row}</span>
+                <div className="artifact-sheet-line" />
+              </div>
+            ))}
           </div>
-        </div>
+        </article>
       ))}
     </div>
   );

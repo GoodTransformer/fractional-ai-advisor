@@ -16,10 +16,13 @@ A greenfield Next.js marketing site for the **Fractional AI Advisor** offer.
 npm install
 ```
 
-2. Optional: add a booking URL for the call handoff:
+2. Optional: add a booking URL and brief-handoff destination:
 
 ```bash
 NEXT_PUBLIC_CLARITY_CALL_URL=https://your-calendar-link
+NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT=https://your-webhook-or-form-endpoint
+# or
+NEXT_PUBLIC_BOOKING_BRIEF_EMAIL=you@example.com
 ```
 
 3. Start the development server:
@@ -39,12 +42,13 @@ npm run build
 - `src/app` holds the four-page routed site: Home, Services, Patrick, and Book.
 - `src/content/site-content.ts` centralises the copy and structured content.
 - `src/components` holds the reusable layout, motion, CTA, FAQ, booking, and artefact components.
-- `public/hero-room.png` is the full-bleed home-page hero image.
+- `public/hero-room.jpg` is the full-bleed home-page hero image.
 
 ## Deployment notes
 
 - The site is static-friendly and can be deployed on Vercel or any modern Next.js host.
-- Set `NEXT_PUBLIC_CLARITY_CALL_URL` in your hosting environment to enable the live booking handoff on `/book`.
+- Set `NEXT_PUBLIC_CLARITY_CALL_URL` in your hosting environment to enable the live scheduling handoff on `/book`.
+- Set `NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT` to POST the intake brief as JSON to a webhook or form service, or `NEXT_PUBLIC_BOOKING_BRIEF_EMAIL` to open a prefilled email draft as the fallback handoff.
 - The site is intentionally small and product-page-led: one strong homepage plus three supporting pages.
 
 ## GitHub Pages
