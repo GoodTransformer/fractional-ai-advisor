@@ -29,7 +29,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   const shellClass = isHome && !scrolled
-    ? "bg-transparent text-paper"
+    ? "bg-ink/10 text-paper backdrop-blur-[2px]"
     : "border-b border-line bg-paper/88 text-ink shadow-[0_10px_40px_rgba(12,18,24,0.06)] backdrop-blur-xl";
   const linkClass = isHome && !scrolled ? "text-paper/72 hover:text-paper" : "text-ink/68 hover:text-ink";
   const menuShellClass = isHome && !scrolled ? "border-white/10 bg-ink/92 text-paper" : "border-line bg-paper/96 text-ink";
@@ -41,7 +41,10 @@ export function SiteHeader() {
         shellClass,
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 md:px-10 lg:px-12">
+      <div
+        key={pathname}
+        className="header-content-enter mx-auto flex max-w-7xl items-center gap-8 px-6 py-4 md:px-10 lg:px-12"
+      >
         <div className="flex items-center gap-8 xl:gap-12">
           <Link
             href="/"
