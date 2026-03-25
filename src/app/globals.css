@@ -177,7 +177,7 @@ img {
 .hero-copy-enter {
   position: relative;
   z-index: 1;
-  animation: heroGroupRise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: heroFadeIn 0.42s ease-out both;
 }
 
 .hero-copy-enter > * {
@@ -204,6 +204,7 @@ img {
   clip-path: polygon(78% 8%, 100% 8%, 100% 79%, 78% 79%);
   opacity: 0;
   transform: scale(1.005);
+  will-change: opacity, transform;
   transition:
     opacity 0.64s ease,
     transform 0.88s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -214,15 +215,13 @@ img {
   transform: scale(1);
 }
 
-@keyframes heroGroupRise {
+@keyframes heroFadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 }
 

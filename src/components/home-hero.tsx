@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -55,6 +56,15 @@ export function HomeHero({
         );
       }}
     >
+      <Image
+        src={robotSceneSrc}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute h-px w-px opacity-0"
+        width={1}
+        height={1}
+        unoptimized
+      />
       <div
         aria-hidden="true"
         className="hero-scene absolute inset-0 hidden md:block"
@@ -62,7 +72,7 @@ export function HomeHero({
       />
       <div
         aria-hidden="true"
-        className={`hero-robot-scene hidden lg:block${revealed ? " is-visible" : ""}`}
+        className={`hero-robot-scene hidden md:block${revealed ? " is-visible" : ""}`}
         style={robotSceneStyle}
       />
       <div
