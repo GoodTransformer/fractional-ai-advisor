@@ -5,6 +5,7 @@ import { startTransition, useState, type FormEvent } from "react";
 import { bookingForm, siteConfig } from "@/content/site-content";
 
 type FormState = {
+  workEmail: string;
   organisationSize: string;
   sector: string;
   currentState: string[];
@@ -13,6 +14,7 @@ type FormState = {
 };
 
 const defaultState: FormState = {
+  workEmail: "",
   organisationSize: "",
   sector: "",
   currentState: [],
@@ -40,10 +42,14 @@ function getSafeHttpUrl(value: string) {
   }
 }
 
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
 function getMailtoHref(email: string, subject: string, body: string) {
   const trimmed = email.trim();
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+  if (!isValidEmail(trimmed)) {
     return "";
   }
 
@@ -66,10 +72,13 @@ export function BookingForm() {
     process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
   );
   const briefEndpoint = getSafeHttpUrl(
-    process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ?? "",
+    process.env.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT ??
+      process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ??
+      "",
   );
 
   const summary = [
+    `Work email: ${form.workEmail.trim() || "Not provided"}`,
     `Organisation size: ${form.organisationSize || "Not provided"}`,
     `Sector: ${form.sector || "Not provided"}`,
     `What is happening now: ${
@@ -85,6 +94,7 @@ export function BookingForm() {
   );
 
   const canSubmit =
+    isValidEmail(form.workEmail) &&
     Boolean(form.organisationSize) &&
     Boolean(form.sector) &&
     form.currentState.length > 0 &&
@@ -126,7 +136,9 @@ export function BookingForm() {
     setIsSubmitting(true);
 
     const briefPayload = {
+      email: form.workEmail.trim(),
       source: siteConfig.offerName,
+      formType: "AI Clarity Call",
       submittedAt: new Date().toISOString(),
       organisationSize: form.organisationSize,
       sector: form.sector,
@@ -134,6 +146,7 @@ export function BookingForm() {
       tools: form.tools.trim(),
       outcome: form.outcome.trim(),
       summary,
+      _subject: "New AI Clarity Call brief",
     };
 
     try {
@@ -180,6 +193,19 @@ export function BookingForm() {
       >
         <div className="grid gap-8">
           <div className="grid gap-6 md:grid-cols-2">
+            <label className="grid gap-3 text-sm text-ink md:col-span-2">
+              <span className="font-medium">Work email</span>
+              <input
+                type="email"
+                autoComplete="email"
+                required
+                value={form.workEmail}
+                onChange={(event) => updateField("workEmail", event.target.value)}
+                className="min-h-12 rounded-[1.25rem] border border-line bg-white/70 px-4 text-base text-ink outline-none transition focus:border-copper"
+                placeholder="name@organisation.com"
+              />
+            </label>
+
             <label className="grid gap-3 text-sm text-ink">
               <span className="font-medium">Organisation size</span>
               <select
@@ -305,7 +331,7 @@ export function BookingForm() {
             </p>
             <p className="mt-4 font-serif text-3xl leading-tight text-ink">
               {deliveryMode === "endpoint"
-                ? "Your context is on the way. Continue when you are ready."
+                ? "Your context is delivered. Continue to Outlook when you are ready."
                 : deliveryMode === "email"
                   ? "Send the drafted note, then continue to scheduling."
                   : "Copy the brief, then continue to scheduling."}

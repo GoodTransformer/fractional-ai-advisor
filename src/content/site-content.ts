@@ -41,7 +41,7 @@ export const siteConfig = {
     href: "/services",
   },
   calendarEnvName: "NEXT_PUBLIC_CLARITY_CALL_URL",
-  briefEndpointEnvName: "NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT",
+  briefEndpointEnvName: "NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT",
   briefEmailEnvName: "NEXT_PUBLIC_BOOKING_BRIEF_EMAIL",
 };
 
@@ -312,7 +312,7 @@ export const bookingPage = {
   intro:
     "Start with a short intake so the call can deal with the real situation, not a generic AI conversation.",
   body:
-    "You will be asked about organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. The brief is handed over before scheduling so the call starts with the real context.",
+    "You will be asked for a work email, organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. The brief is handed over before scheduling so the call starts with the real context.",
 };
 
 export const bookingForm = {
@@ -337,7 +337,7 @@ export const bookingForm = {
   ],
   nextSteps: [
     "Fill in the short brief.",
-    "Review the summary.",
+    "Review the summary and delivery.",
     "Continue to scheduling when you are ready.",
   ],
 };
