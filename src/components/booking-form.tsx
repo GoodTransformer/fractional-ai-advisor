@@ -92,6 +92,7 @@ export function BookingForm() {
     "AI Clarity Call intake",
     summary,
   );
+  const autoRedirectsToCalendar = Boolean(briefEndpoint && calendarUrl);
 
   const canSubmit =
     isValidEmail(form.workEmail) &&
@@ -176,6 +177,12 @@ export function BookingForm() {
         setDeliveryMode(nextMode);
         setSubmitted(true);
       });
+
+      if (nextMode === "endpoint" && calendarUrl) {
+        window.setTimeout(() => {
+          window.location.assign(calendarUrl);
+        }, 120);
+      }
     } catch {
       setSubmitError(
         "The brief could not be handed off from this page. Please try again or use the copy option below.",
@@ -291,10 +298,18 @@ export function BookingForm() {
               disabled={!canSubmit || isSubmitting}
               className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper transition enabled:hover:bg-ink/90 disabled:cursor-not-allowed disabled:bg-ink/35"
             >
-              {isSubmitting ? "Preparing brief..." : "Continue"}
+              {isSubmitting
+                ? autoRedirectsToCalendar
+                  ? "Saving brief..."
+                  : "Preparing brief..."
+                : autoRedirectsToCalendar
+                  ? "Save brief and continue"
+                  : "Continue"}
             </button>
             <p className="text-sm text-slate">
-              {siteConfig.primaryCta.label} follows this short brief.
+              {autoRedirectsToCalendar
+                ? "We will take you straight to booking once the brief is saved."
+                : `${siteConfig.primaryCta.label} follows this short brief.`}
             </p>
           </div>
           {submitError ? (

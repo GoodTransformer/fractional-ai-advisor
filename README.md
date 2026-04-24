@@ -16,11 +16,11 @@ A greenfield Next.js marketing site for the **Fractional AI Advisor** offer.
 npm install
 ```
 
-2. Optional: add a booking URL and brief-handoff destination:
+2. Optional for local development: add a booking URL and brief-handoff destination in `.env.local`:
 
 ```bash
 NEXT_PUBLIC_CLARITY_CALL_URL=https://your-calendar-link
-NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT=https://your-webhook-or-form-endpoint
+NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT=https://your-webhook-or-form-endpoint
 # or
 NEXT_PUBLIC_BOOKING_BRIEF_EMAIL=you@example.com
 ```
@@ -47,8 +47,9 @@ npm run build
 ## Deployment notes
 
 - The site is static-friendly and can be deployed on Vercel or any modern Next.js host.
-- Set `NEXT_PUBLIC_CLARITY_CALL_URL` in your hosting environment to enable the live scheduling handoff on `/book`.
-- Set `NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT` to POST the intake brief as JSON to a webhook or form service, or `NEXT_PUBLIC_BOOKING_BRIEF_EMAIL` to open a prefilled email draft as the fallback handoff.
+- GitHub Pages builds are static, so the public booking values used on `/book` must exist at build time.
+- This repo includes `.env.production` so the published site can hand off to Outlook Bookings and Formspree without relying on runtime environment variables.
+- For local overrides, set `NEXT_PUBLIC_CLARITY_CALL_URL`, `NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT`, or `NEXT_PUBLIC_BOOKING_BRIEF_EMAIL` in `.env.local`.
 - The site is intentionally small and product-page-led: one strong homepage plus three supporting pages.
 
 ## GitHub Pages
