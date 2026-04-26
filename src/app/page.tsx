@@ -13,16 +13,9 @@ import {
   siteConfig,
   testimonial,
 } from "@/content/site-content";
+import { publicBasePath } from "@/lib/public-base-path";
 
-const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
-const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "";
-const isUserPagesSite =
-  repository !== "" && repository === repositoryOwner + ".github.io";
-const publicBasePath =
-  process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
-    ? "/" + repository
-    : "";
-const heroImageSrc = publicBasePath + "/hero/ChatGPT Image Apr 26, 2026 at 05_42_17 PM.png";
+const heroImageSrc = publicBasePath + "/hero/hero-main.png";
 
 export default function HomePage() {
   return (

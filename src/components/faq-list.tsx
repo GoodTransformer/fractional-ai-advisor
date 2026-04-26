@@ -16,7 +16,7 @@ export function FAQList({ items }: FAQListProps) {
             <span className="max-w-3xl font-serif text-2xl leading-tight text-ink">
               {item.question}
             </span>
-            <span className="mt-1 text-xl text-copper transition-transform duration-300 group-open:rotate-45">
+            <span aria-hidden="true" className="mt-1 text-xl text-copper transition-transform duration-300 group-open:rotate-45">
               +
             </span>
           </summary>

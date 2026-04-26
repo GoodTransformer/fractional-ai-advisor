@@ -4,19 +4,12 @@ import type { Metadata } from "next";
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { CTAGroup } from "@/components/cta-group";
 import { patrickPage, siteConfig, testimonial } from "@/content/site-content";
+import { publicBasePath } from "@/lib/public-base-path";
 
 export const metadata: Metadata = {
   title: "Patrick",
 };
 
-const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
-const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "";
-const isUserPagesSite =
-  repository !== "" && repository === repositoryOwner + ".github.io";
-const publicBasePath =
-  process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
-    ? "/" + repository
-    : "";
 const portraitSrc = publicBasePath + patrickPage.portrait.src;
 
 export default function PatrickPage() {
