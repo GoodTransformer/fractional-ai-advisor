@@ -72,9 +72,7 @@ export function BookingForm() {
     process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
   );
   const briefEndpoint = getSafeHttpUrl(
-    process.env.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT ??
-      process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ??
-      "",
+    process.env.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT ?? "",
   );
 
   const summary = [
@@ -447,9 +445,7 @@ export function PersonalBookingForm() {
     process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
   );
   const briefEndpoint = getSafeHttpUrl(
-    process.env.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT ??
-      process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ??
-      "",
+    process.env.NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT ?? "",
   );
 
   const summary = [
