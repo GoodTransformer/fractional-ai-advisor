@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
-import { CTAGroup } from "@/components/cta-group";
 import { PageIntro } from "@/components/page-intro";
-import { offers, servicesPage, siteConfig } from "@/content/site-content";
+import { lessonPricing, offers, servicesPage, siteConfig } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -14,9 +14,59 @@ export default function ServicesPage() {
     <>
       <PageIntro title={servicesPage.title} body={servicesPage.intro} />
 
+      {/* ── Personal AI lessons ──────────────────────────────────────────── */}
+      <section className="section-divider bg-soft-blue">
+        <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12 lg:py-16">
+          <AnimatedReveal className="max-w-3xl">
+            <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
+              {servicesPage.personalSection.heading}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate md:text-lg">
+              {servicesPage.personalSection.intro}
+            </p>
+          </AnimatedReveal>
+
+          <AnimatedReveal className="mt-10 grid gap-5 md:grid-cols-3">
+            {lessonPricing.tiers.map((tier) => (
+              <div key={tier.name} className="border-t border-line pt-5">
+                <p className="page-eyebrow">{tier.duration}</p>
+                <div className="mt-3 flex items-baseline gap-3">
+                  <span className="font-serif text-[2rem] leading-none text-ink">
+                    {tier.price}
+                  </span>
+                  <span className="font-serif text-xl leading-none text-ink/50">/</span>
+                  <span className="text-sm text-ink/60">{tier.name}</span>
+                </div>
+                <p className="mt-4 text-base leading-7 text-slate">{tier.body}</p>
+              </div>
+            ))}
+          </AnimatedReveal>
+
+          <AnimatedReveal className="mt-8">
+            <p className="text-sm leading-6 text-slate/70">{lessonPricing.delivery}</p>
+            <Link
+              href={servicesPage.personalSection.cta.href}
+              className="text-link mt-6 inline-flex text-sm text-ink"
+            >
+              {servicesPage.personalSection.cta.label}
+            </Link>
+          </AnimatedReveal>
+        </div>
+      </section>
+
+      {/* ── Business AI advisory ─────────────────────────────────────────── */}
       <section className="section-divider">
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12 lg:py-16">
-          <div className="border-t border-line">
+          <AnimatedReveal className="max-w-3xl">
+            <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
+              {servicesPage.businessSection.heading}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate md:text-lg">
+              {servicesPage.businessSection.intro}
+            </p>
+          </AnimatedReveal>
+
+          <div className="mt-10 border-t border-line">
             {offers.map((offer) => (
               <AnimatedReveal
                 key={offer.name}
@@ -24,9 +74,9 @@ export default function ServicesPage() {
               >
                 <div>
                   <p className="page-eyebrow">{offer.duration}</p>
-                  <h2 className="mt-3 font-serif text-3xl leading-tight text-ink">
+                  <h3 className="mt-3 font-serif text-3xl leading-tight text-ink">
                     {offer.name}
-                  </h2>
+                  </h3>
                 </div>
 
                 <div>
@@ -39,7 +89,10 @@ export default function ServicesPage() {
                 <div className="grid gap-5">
                   <ul className="space-y-3 text-sm leading-6 text-slate">
                     {offer.outputs.map((item) => (
-                      <li key={item} className="border-b border-line pb-3 last:border-b-0 last:pb-0">
+                      <li
+                        key={item}
+                        className="border-b border-line pb-3 last:border-b-0 last:pb-0"
+                      >
                         {item}
                       </li>
                     ))}
@@ -60,6 +113,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* ── 90-day arc ───────────────────────────────────────────────────── */}
       <section className="section-divider">
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-12 lg:py-16">
           <AnimatedReveal className="max-w-3xl">
@@ -81,7 +135,12 @@ export default function ServicesPage() {
           </div>
 
           <AnimatedReveal className="mt-10">
-            <CTAGroup primary={siteConfig.primaryCta} tone="dark" />
+            <Link
+              href={servicesPage.businessSection.cta.href}
+              className="text-link text-sm text-ink"
+            >
+              {servicesPage.businessSection.cta.label}
+            </Link>
           </AnimatedReveal>
         </div>
       </section>

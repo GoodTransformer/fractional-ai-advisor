@@ -11,6 +11,7 @@ const config: Config = {
         ink: "rgb(var(--color-ink) / <alpha-value>)",
         slate: "rgb(var(--color-slate) / <alpha-value>)",
         copper: "rgb(var(--color-copper) / <alpha-value>)",
+        brass: "rgb(var(--color-brass) / <alpha-value>)",
         moss: "rgb(var(--color-moss) / <alpha-value>)",
         line: "rgb(var(--color-line) / 0.14)",
         glow: "rgb(var(--color-glow) / 0.7)",

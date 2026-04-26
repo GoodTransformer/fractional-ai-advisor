@@ -1,9 +1,9 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
-import { BookingForm } from "@/components/booking-form";
 import { PageIntro } from "@/components/page-intro";
-import { bookingPage } from "@/content/site-content";
+import { bookingPage, siteConfig } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Book",
@@ -21,8 +21,18 @@ export default function BookPage() {
               {bookingPage.body}
             </p>
           </AnimatedReveal>
-          <AnimatedReveal className="mt-12">
-            <BookingForm />
+
+          <AnimatedReveal className="mt-10 grid gap-5 md:grid-cols-2">
+            <Link href="/book/personal" className="booking-choice booking-choice--light">
+              <span>For individuals</span>
+              <strong>{siteConfig.personalCta.label}</strong>
+              <small>Tailored 1-to-1 sessions for beginners and improvers. Starts at £75.</small>
+            </Link>
+            <Link href="/book/business" className="booking-choice booking-choice--dark">
+              <span>For businesses</span>
+              <strong>{siteConfig.businessCta.label}</strong>
+              <small>Fractional AI advisory for teams and organisations ready to move from intention to practice.</small>
+            </Link>
           </AnimatedReveal>
         </div>
       </section>

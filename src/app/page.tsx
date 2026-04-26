@@ -3,13 +3,12 @@ import Link from "next/link";
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { ArtefactDeck } from "@/components/artefact-deck";
 import { ClientLogoStrip } from "@/components/client-logo-strip";
-import { CTAGroup } from "@/components/cta-group";
 import { FAQList } from "@/components/faq-list";
 import { HomeHero } from "@/components/home-hero";
 import {
   homePage,
+  lessonOffers,
   offers,
-  operatingModel,
   proofSignals,
   siteConfig,
   testimonial,
@@ -18,13 +17,13 @@ import {
 const repository = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
 const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "";
 const isUserPagesSite =
-  repository !== "" && repository === `${repositoryOwner}.github.io`;
+  repository !== "" && repository === repositoryOwner + ".github.io";
 const publicBasePath =
   process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
-    ? `/${repository}`
+    ? "/" + repository
     : "";
-const heroImageSrc = `${publicBasePath}/hero-room.jpg`;
-const heroRobotSceneSrc = `${publicBasePath}/hero-room-robot.jpg`;
+const heroImageSrc = publicBasePath + "/hero/ai-coach-room-clean.png";
+
 export default function HomePage() {
   return (
     <>
@@ -33,14 +32,13 @@ export default function HomePage() {
         descriptor={homePage.hero.descriptor}
         support={homePage.hero.support}
         backgroundImageSrc={heroImageSrc}
-        robotSceneSrc={heroRobotSceneSrc}
-        primaryCta={siteConfig.primaryCta}
-        secondaryCta={siteConfig.heroSecondaryCta}
+        routes={homePage.hero.routes}
+        signals={homePage.hero.signals}
       />
 
-      <section className="section-divider">
+      <section className="section-divider bg-soft-blue">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
-          <div className="grid gap-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
+          <div className="grid gap-14 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-16">
             <AnimatedReveal>
               <h2 className="max-w-2xl font-serif text-4xl leading-tight text-ink md:text-5xl">
                 {homePage.role.heading}
@@ -50,17 +48,62 @@ export default function HomePage() {
               </p>
             </AnimatedReveal>
 
-            <AnimatedReveal className="border-t border-line pt-6">
-              <div className="grid gap-6 md:grid-cols-3">
-                {operatingModel.map((item) => (
-                  <div key={item.name} className="border-b border-line pb-5 md:border-b-0 md:border-r md:pb-0 md:pr-5 last:border-r-0">
-                    <h3 className="font-serif text-3xl text-ink">{item.name}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate">{item.line}</p>
-                  </div>
-                ))}
-              </div>
+            <AnimatedReveal className="grid gap-8 md:grid-cols-2">
+              {lessonOffers.map((offer) => (
+                <article key={offer.name} className="offer-panel">
+                  <p className="page-eyebrow">{offer.label}</p>
+                  <h3 className="mt-4 font-serif text-3xl leading-tight text-ink md:text-4xl">
+                    {offer.name}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-slate">
+                    {offer.purpose}
+                  </p>
+                  <ul className="mt-6 space-y-3 text-sm leading-6 text-slate">
+                    {offer.points.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={offer.href} className="text-link mt-7 inline-flex text-sm text-ink">
+                    {offer.name === "Personal AI Lessons" ? "Book a lesson" : "Book a business call"}
+                  </Link>
+                </article>
+              ))}
             </AnimatedReveal>
           </div>
+        </div>
+      </section>
+
+      <section className="section-divider roadmap-section">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
+          <AnimatedReveal className="max-w-3xl">
+            <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
+              Personal lessons that turn curiosity into useful habits.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate md:text-lg">
+              Sessions move from confidence to application: learn the basics, explore the right tools, practise on real tasks, adopt repeatable workflows, then scale what works into your week.
+            </p>
+          </AnimatedReveal>
+
+          <AnimatedReveal className="mt-12 grid gap-5 md:grid-cols-5">
+            {["Learn", "Explore", "Practice", "Adopt", "Scale"].map((step, index) => (
+              <div key={step} className="roadmap-step">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{step}</h3>
+                <p>
+                  {[
+                    "Build fluency and confidence.",
+                    "Try ideas and tools safely.",
+                    "Apply AI to real work.",
+                    "Embed it in your habits.",
+                    "Drive impact and growth.",
+                  ][index]}
+                </p>
+              </div>
+            ))}
+          </AnimatedReveal>
         </div>
       </section>
 
@@ -68,10 +111,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
           <AnimatedReveal className="max-w-3xl">
             <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
-              {homePage.services.heading}
+              Business support when AI needs to become working practice.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate md:text-lg">
-              {homePage.services.intro}
+              The business work still exists, but it now sits as the organisation route: practical advisory, adoption support, and selected workflow change.
             </p>
           </AnimatedReveal>
 
@@ -98,7 +141,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-divider">
+      <section className="section-divider bg-warm-paper">
         <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-[4.75rem] lg:px-12 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.74fr)_minmax(0,1.26fr)] lg:items-start lg:gap-16 xl:gap-20">
             <AnimatedReveal className="max-w-lg">
@@ -144,9 +187,6 @@ export default function HomePage() {
               <p className="mt-5 max-w-[23rem] text-sm leading-7 text-slate md:text-base">
                 {homePage.patrick.frame.body}
               </p>
-              <p className="mt-5 max-w-[22rem] text-sm leading-6 text-ink/76">
-                {homePage.patrick.frame.kicker}
-              </p>
             </AnimatedReveal>
 
             <AnimatedReveal>
@@ -178,8 +218,13 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl text-base leading-7 text-paper/74 md:text-lg">
               {homePage.finalCta.body}
             </p>
-            <div className="mt-10">
-              <CTAGroup primary={siteConfig.primaryCta} tone="light" />
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link href={siteConfig.personalCta.href} className="button-light">
+                {siteConfig.personalCta.label}
+              </Link>
+              <Link href={siteConfig.businessCta.href} className="button-ghost-light">
+                {siteConfig.businessCta.label}
+              </Link>
             </div>
           </AnimatedReveal>
         </div>

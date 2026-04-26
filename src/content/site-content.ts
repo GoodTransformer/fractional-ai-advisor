@@ -3,6 +3,13 @@ export type LinkItem = {
   label: string;
 };
 
+export type LessonTier = {
+  name: string;
+  price: string;
+  duration: string;
+  body: string;
+};
+
 export type Offer = {
   name: string;
   duration: string;
@@ -29,16 +36,24 @@ export type ProofOrganisation = {
 };
 
 export const siteConfig = {
-  offerName: "Fractional AI Advisor",
-  descriptor: "Embedded AI strategy and adoption lead",
+  offerName: "Good Transformer",
+  descriptor: "Personal AI lessons and practical business advisory",
   brand: "Good Transformer",
   primaryCta: {
-    label: "Book a 25-minute AI Clarity Call",
+    label: "Book a call",
     href: "/book",
   },
   heroSecondaryCta: {
-    label: "See services",
-    href: "/services",
+    label: "Book a personal AI lesson",
+    href: "/book/personal",
+  },
+  personalCta: {
+    label: "Book a personal AI lesson",
+    href: "/book/personal",
+  },
+  businessCta: {
+    label: "Book a business call",
+    href: "/book/business",
   },
   calendarEnvName: "NEXT_PUBLIC_CLARITY_CALL_URL",
   briefEndpointEnvName: "NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT",
@@ -48,8 +63,34 @@ export const siteConfig = {
 export const navigation: LinkItem[] = [
   { href: "/services", label: "Services" },
   { href: "/patrick", label: "Patrick" },
-  { href: "/book", label: "Book" },
+  { href: "/about", label: "About" },
 ];
+
+export const aboutPage = {
+  title: "About",
+  intro:
+    "I'm Patrick Hussey, and I started Good Transformer as a new kind of consultancy — one built to help individuals and companies become AI ready. The goal is to make people genuinely better equipped for the changes ahead.",
+  background: {
+    heading: "Where I come from",
+    body:
+      "My approach is to keep the ethics in view — naming the trade-offs, taking the harder questions seriously, and treating the people who use these tools as the people who matter most. That instinct comes from a career spent translating technology into action: writing for Fast Company and The Guardian, and working with leaders at Google, SAP, Adobe, Microsoft, and Vodafone, alongside startups, charities, and cultural organisations on AI strategy, thought leadership, and the practical business of adoption.",
+  },
+  ethics: {
+    heading: "Where I think we are",
+    body:
+      "I'll be honest: we are at the beginning of a turbulent transition that will reshape work, organisations, and society faster than most people are prepared for. AI is not a productivity upgrade — it is a structural shift, and the pressure on individuals and businesses to adapt is already real and will only intensify. I am not a booster: faster adoption is not always better. We need people who can think clearly about the trade-offs and pay attention to the ethical questions that come with the technology.",
+  },
+  talks: {
+    heading: "Talks",
+    body:
+      "I give talks on AI, its societal effects, and the ethical questions that organisations and individuals are going to have to answer whether they are ready or not. Recent themes range from adoption and team capability to AI in education, the future of work, and the democratic guardrails we will need to put in place. If you want something honest, sceptical in the right places, and rooted in what is actually happening rather than the hype cycle, get in touch.",
+  },
+  name: {
+    heading: "Why Good Transformer?",
+    body:
+      "The name comes from the Transformer — the neural network architecture introduced in the 2017 paper \"Attention Is All You Need\" that quietly started the AI boom we are now living through. Every large language model and AI assistant you have heard of is built on it. The \"Good\" is the work: the hope that with careful application and democratic guidance, the transition can go well for more people — not just the few who are already ahead of it.",
+  },
+};
 
 export const operatingModel = [
   {
@@ -190,20 +231,51 @@ export const proofSignals = {
 export const homePage = {
   hero: {
     brand: siteConfig.brand,
-    title: siteConfig.offerName,
-    descriptor: siteConfig.descriptor,
+    title: "Get confident with AI",
+    descriptor:
+      "Personal 1-to-1 AI lessons for individuals, plus fractional advisory for teams and businesses.",
     support:
-      "Patrick Hussey works with leadership on direction and guardrails, then with teams on workflows, pilots, and habits, without the overhead of a full-time hire.",
+      "Whether you are just getting started or want to sharpen your skills, Patrick Hussey offers practical AI guidance you can actually use. He also works with organisations on AI strategy, adoption, and workflow change.",
+    routes: [
+      {
+        label: "For individuals",
+        title: "Book a personal AI lesson",
+        body: "1-to-1 help for beginners and improvers",
+        href: "/book/personal",
+        tone: "light",
+      },
+      {
+        label: "For businesses",
+        title: "Book a business call",
+        body: "Fractional AI adviser for teams and businesses",
+        href: "/book/business",
+        tone: "dark",
+      },
+    ],
+    signals: [
+      {
+        title: "Personal lessons",
+        body: "Learn at your pace with expert guidance",
+      },
+      {
+        title: "Practical and relevant",
+        body: "Real workflows. Real results.",
+      },
+      {
+        title: "Trusted adviser",
+        body: "Strategic, adoption, and lasting impact",
+      },
+    ],
   },
   role: {
-    heading: "AI is already in the business. The problem is that it is uneven.",
+    heading: "AI is easier to learn when the lesson starts with your real life.",
     support:
-      "Some teams are experimenting. Some are not. Leadership wants progress, but ownership, guardrails, and working practice are patchy. Fractional AI Advisor is a part-time embedded role that connects direction, workflow change, and team capability.",
+      "Good Transformer is built around calm, practical coaching. For individuals, that means one-to-one lessons shaped around the tools, tasks, and confidence gaps you actually have. For organisations, it means the same practical judgement applied to strategy, adoption, workflows, and guardrails.",
   },
   services: {
-    heading: "Three clear ways to buy the work.",
+    heading: "Two clear routes into better AI use.",
     intro:
-      "Start with clarity, then deepen only when the work justifies it.",
+      "Start with the support that fits the moment: personal confidence or business change.",
     note: "Most work starts with the smallest engagement that can create real momentum.",
   },
   patrick: {
@@ -221,42 +293,114 @@ export const homePage = {
   },
   faqs: [
     {
+      question: "Do I need any experience to book a personal lesson?",
+      answer:
+        "None at all. Sessions are designed for wherever you are — complete beginner, occasional user, or someone who wants to use AI more deliberately. The lesson starts with what you actually need, not a standard syllabus.",
+    },
+    {
+      question: "What does a personal lesson cover?",
+      answer:
+        "Whatever is most useful to you: ChatGPT basics, writing, research, planning, prompting habits, or getting more from the tools you already have. Sessions are one-to-one, so the focus is entirely on your work and your questions.",
+    },
+    {
       question: "What does fractional mean in practice?",
       answer:
         "It means a defined senior cadence rather than a full-time hire: usually a monthly executive session, a weekly or fortnightly working block, access for short triage, and a clear view of what changes next.",
     },
     {
-      question: "Is this strategy or training?",
+      question: "Is the business work strategy or training?",
       answer:
         "It is strategy-to-adoption work. Direction matters, but so do workflow redesign, pilots, and team capability. The point is to connect those layers so AI shows up in day-to-day work, not just in decks or workshops.",
     },
     {
-      question: "Will you implement tools?",
-      answer:
-        "Patrick helps shape tool choices, standards, and workflow design. Bespoke engineering is not the default sale. If build work is needed, he can scope it properly and help select the right implementation partner.",
-    },
-    {
-      question: "How do you handle risk and data protection?",
-      answer:
-        "With proportionate guardrails: approved tools, clear do-not-paste rules, workflow-specific guidance, escalation routes, and alignment with legal or data-protection owners where needed. The aim is safe progress, not bureaucracy for its own sake.",
-    },
-    {
-      question: "What happens in the clarity call?",
+      question: "What happens in the business clarity call?",
       answer:
         "It is a short working conversation, not a generic sales chat. Patrick reviews the current reality, pressure points, tools in use, and desired 90-day outcome, then recommends the smallest credible next step.",
     },
   ],
   finalCta: {
-    heading: "If AI is already in the organisation, the next move is to make it coherent.",
+    heading: "Start with the kind of AI help you actually need.",
     body:
-      "Bring the current reality, not a polished story. The aim of the call is a clear view of what should change in the next 30 days.",
+      "Book a personal lesson if you want confidence with the tools. Book a business call if the challenge is team adoption, strategy, or workflow change.",
   },
+};
+
+export const lessonOffers = [
+  {
+    name: "Personal AI Lessons",
+    label: "For individuals",
+    purpose:
+      "One-to-one sessions for beginners and improvers who want to use AI with more confidence, judgement, and speed.",
+    points: [
+      "Learn ChatGPT and related tools around your own tasks",
+      "Build better prompting habits without jargon",
+      "Leave with repeatable workflows you can keep using",
+    ],
+    href: "/book/personal",
+  },
+  {
+    name: "Business AI Advisory",
+    label: "For teams",
+    purpose:
+      "Fractional support for leaders who need AI to move from scattered experimentation into useful working practice.",
+    points: [
+      "Clarify the highest-value use cases",
+      "Create guardrails and adoption rhythm",
+      "Redesign selected workflows with teams",
+    ],
+    href: "/book/business",
+  },
+];
+
+export const lessonPricing: {
+  heading: string;
+  delivery: string;
+  tiers: LessonTier[];
+} = {
+  heading: "What you get",
+  delivery:
+    "Sessions can be held online or at a co-working space — venue to be agreed at booking.",
+  tiers: [
+    {
+      name: "Intro lesson",
+      price: "£75",
+      duration: "1 hr",
+      body:
+        "A single session tailored to your skill level, your tools, and the tasks that matter to you. Leave with something you can use straight away.",
+    },
+    {
+      name: "Starter pack",
+      price: "£375",
+      duration: "3 × 1 hr",
+      body:
+        "Three sessions that build in sequence. Go deeper on the tools that suit your work, form habits that stick, and develop a workflow you can keep running.",
+    },
+    {
+      name: "Ongoing rhythm",
+      price: "£250 / month",
+      duration: "2 × 1 hr + async support",
+      body:
+        "Two sessions per month plus support between them. For people who want to keep moving — new tools, new challenges, accountability, and someone to think with.",
+    },
+  ],
 };
 
 export const servicesPage = {
   title: "Services",
   intro:
-    "Three routes, one operating logic: clarify the direction, change selected workflows, then keep momentum where it matters.",
+    "Two routes into better AI use. Personal lessons for individuals. Practical advisory for teams and businesses.",
+  personalSection: {
+    heading: "Personal AI lessons",
+    intro:
+      "One-to-one sessions tailored to your skill level, your tools, and the work you actually do. No jargon, no generic demos.",
+    cta: { label: "Book a personal lesson", href: "/book/personal" },
+  },
+  businessSection: {
+    heading: "Business AI advisory",
+    intro:
+      "Fractional support for organisations that need AI to move from scattered experimentation into useful working practice.",
+    cta: { label: "Book a business call", href: "/book/business" },
+  },
   sampleArc: [
     {
       phase: "Weeks 1-2",
@@ -282,17 +426,23 @@ export const servicesPage = {
 export const patrickPage = {
   title: "Patrick Hussey",
   intro:
-    "Patrick is brought in when AI is already in the building but progress is uneven, pilots are not changing the work, or leadership needs a steadier operating hand.",
+    "Patrick works with individuals who want to get better at using AI, and with organisations that need to turn AI intention into working practice. Either way, the approach is the same: practical, calm, and no interest in hype.",
+  portrait: {
+    src: "/patrick/patrick-portrait.jpg",
+    alt: "Patrick Hussey",
+    caption:
+      "Every personal lesson is delivered by Patrick directly. No course platform, no junior coach, no script — just one-to-one time with the person you are hiring.",
+  },
   sections: [
     {
       title: "How he works",
       body:
-        "Calm, direct, anti-hype. The job is to clarify direction, help teams change real workflows, and leave capability inside the organisation.",
+        "Honest about what AI can and cannot do. Whether the work is a first personal lesson or a multi-team adoption programme, the job is to meet you where you are and leave you with something that works in the real world.",
     },
     {
       title: "Selected experience",
       body:
-        "Current Good Transformer positioning cites work with enterprise leaders at Google, SAP, Adobe, Microsoft, and Vodafone, alongside startups, charities, and cultural organisations.",
+        "Work with enterprise leaders at Google, SAP, Adobe, Microsoft, and Vodafone, alongside startups, charities, cultural organisations, and individuals at every level of AI fluency.",
     },
     {
       title: "Writing and judgement",
@@ -302,17 +452,31 @@ export const patrickPage = {
     {
       title: "Boundary line",
       body:
-        "Patrick shapes direction, prioritises work, builds operating rhythm, and helps teams adopt safely. He is not selling a software platform or a hidden engineering bench.",
+        "Patrick builds confidence, shapes direction, and helps individuals and teams adopt AI safely. He is not selling a software platform or a hidden engineering bench.",
     },
   ],
 };
 
 export const bookingPage = {
-  title: "Book a 25-minute AI Clarity Call",
+  title: "Book a session",
   intro:
-    "Start with a short intake so the call can deal with the real situation, not a generic AI conversation.",
+    "Two routes into better AI: one-to-one personal lessons for individuals, or a business call for teams and organisations.",
   body:
-    "You will be asked for a work email, organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. The brief is handed over before scheduling so the call starts with the real context.",
+    "Both routes start with a short intake so the conversation can deal with the real situation, not a generic AI pitch.",
+  personal: {
+    title: "Book a personal AI lesson",
+    intro:
+      "Tell Patrick what you want to feel more confident doing. The lesson can cover ChatGPT basics, everyday workflows, writing, research, planning, or sharper use of the AI tools you already have.",
+    body:
+      "For individuals: beginners, improvers, freelancers, job-seekers, founders, and professionals who want practical help without hype.",
+  },
+  business: {
+    title: "Book a business call",
+    intro:
+      "Start with a short intake so the call can deal with the real situation, not a generic AI conversation.",
+    body:
+      "You will be asked for a work email, organisation size, sector, current AI use, tools in play, and what success should look like in 90 days. The brief is handed over before scheduling so the call starts with the real context.",
+  },
 };
 
 export const bookingForm = {

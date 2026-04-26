@@ -401,3 +401,359 @@ export function BookingForm() {
     </div>
   );
 }
+
+
+type PersonalFormState = {
+  name: string;
+  email: string;
+  confidence: string;
+  tools: string[];
+  goal: string;
+  availability: string;
+};
+
+const personalDefaultState: PersonalFormState = {
+  name: "",
+  email: "",
+  confidence: "",
+  tools: [],
+  goal: "",
+  availability: "",
+};
+
+const confidenceLevels = [
+  "Brand new to AI",
+  "Tried it, but not confident",
+  "Using it sometimes",
+  "Already using it and want sharper workflows",
+];
+
+const personalTools = [
+  "ChatGPT",
+  "Microsoft Copilot",
+  "Claude",
+  "Gemini",
+  "Not sure yet",
+];
+
+export function PersonalBookingForm() {
+  const [form, setForm] = useState<PersonalFormState>(personalDefaultState);
+  const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("manual");
+  const calendarUrl = getSafeHttpUrl(
+    process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
+  );
+  const briefEndpoint = getSafeHttpUrl(
+    process.env.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT ??
+      process.env.NEXT_PUBLIC_BOOKING_BRIEF_ENDPOINT ??
+      "",
+  );
+
+  const summary = [
+    "Name: " + (form.name.trim() || "Not provided"),
+    "Email: " + (form.email.trim() || "Not provided"),
+    "AI confidence: " + (form.confidence || "Not provided"),
+    "Tools of interest: " + (form.tools.length > 0 ? form.tools.join("; ") : "Not provided"),
+    "Lesson goal: " + (form.goal.trim() || "Not provided"),
+    "Availability: " + (form.availability.trim() || "Not provided"),
+  ].join("\n");
+  const briefEmailHref = getMailtoHref(
+    process.env.NEXT_PUBLIC_BOOKING_BRIEF_EMAIL ?? "",
+    "Personal AI lesson intake",
+    summary,
+  );
+  const autoRedirectsToCalendar = Boolean(briefEndpoint && calendarUrl);
+  const canSubmit =
+    Boolean(form.name.trim()) &&
+    isValidEmail(form.email) &&
+    Boolean(form.confidence) &&
+    Boolean(form.goal.trim());
+
+  function toggleTool(value: string) {
+    setForm((current) => {
+      const tools = current.tools.includes(value)
+        ? current.tools.filter((item) => item !== value)
+        : [...current.tools, value];
+
+      return { ...current, tools };
+    });
+  }
+
+  function updateField<Key extends keyof PersonalFormState>(
+    key: Key,
+    value: PersonalFormState[Key],
+  ) {
+    setForm((current) => ({ ...current, [key]: value }));
+  }
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(summary);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1400);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!canSubmit || isSubmitting) {
+      return;
+    }
+
+    setSubmitError("");
+    setCopied(false);
+    setIsSubmitting(true);
+
+    const briefPayload = {
+      email: form.email.trim(),
+      name: form.name.trim(),
+      source: siteConfig.offerName,
+      formType: "Personal AI Lesson",
+      submittedAt: new Date().toISOString(),
+      confidence: form.confidence,
+      tools: form.tools,
+      goal: form.goal.trim(),
+      availability: form.availability.trim(),
+      summary,
+      _subject: "New Personal AI Lesson brief",
+    };
+
+    try {
+      let nextMode: DeliveryMode = "manual";
+
+      if (briefEndpoint) {
+        const response = await fetch(briefEndpoint, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(briefPayload),
+        });
+
+        if (!response.ok) {
+          throw new Error("Brief handoff failed.");
+        }
+
+        nextMode = "endpoint";
+      } else if (briefEmailHref) {
+        nextMode = "email";
+        window.location.assign(briefEmailHref);
+      }
+
+      startTransition(() => {
+        setDeliveryMode(nextMode);
+        setSubmitted(true);
+      });
+
+      if (nextMode === "endpoint" && calendarUrl) {
+        window.setTimeout(() => {
+          window.location.assign(calendarUrl);
+        }, 120);
+      }
+    } catch {
+      setSubmitError(
+        "The lesson brief could not be handed off from this page. Please try again or use the copy option below.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-[1.25rem] border border-line bg-paper/82 p-6 shadow-glow backdrop-blur md:p-8"
+      >
+        <div className="grid gap-8">
+          <div className="grid gap-6 md:grid-cols-2">
+            <label className="grid gap-3 text-sm text-ink">
+              <span className="font-medium">Name</span>
+              <input
+                type="text"
+                autoComplete="name"
+                required
+                value={form.name}
+                onChange={(event) => updateField("name", event.target.value)}
+                className="min-h-12 rounded-[0.8rem] border border-line bg-white/70 px-4 text-base text-ink outline-none transition focus:border-brass"
+                placeholder="Your name"
+              />
+            </label>
+
+            <label className="grid gap-3 text-sm text-ink">
+              <span className="font-medium">Email</span>
+              <input
+                type="email"
+                autoComplete="email"
+                required
+                value={form.email}
+                onChange={(event) => updateField("email", event.target.value)}
+                className="min-h-12 rounded-[0.8rem] border border-line bg-white/70 px-4 text-base text-ink outline-none transition focus:border-brass"
+                placeholder="name@email.com"
+              />
+            </label>
+          </div>
+
+          <label className="grid gap-3 text-sm text-ink">
+            <span className="font-medium">Current AI confidence</span>
+            <select
+              value={form.confidence}
+              onChange={(event) => updateField("confidence", event.target.value)}
+              className="min-h-12 rounded-[0.8rem] border border-line bg-white/70 px-4 text-base text-ink outline-none transition focus:border-brass"
+            >
+              <option value="">Select one</option>
+              {confidenceLevels.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <fieldset className="grid gap-3">
+            <legend className="text-sm font-medium text-ink">Tools you want help with</legend>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {personalTools.map((item) => {
+                const checked = form.tools.includes(item);
+
+                return (
+                  <label
+                    key={item}
+                    className="flex cursor-pointer items-start gap-3 border-b border-line pb-3 text-sm leading-6 text-slate"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleTool(item)}
+                      className="mt-1 h-4 w-4 rounded border-line text-brass focus:ring-brass"
+                    />
+                    <span>{item}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </fieldset>
+
+          <label className="grid gap-3 text-sm text-ink">
+            <span className="font-medium">What would you like the lesson to help you do?</span>
+            <textarea
+              rows={4}
+              required
+              value={form.goal}
+              onChange={(event) => updateField("goal", event.target.value)}
+              className="rounded-[1rem] border border-line bg-white/70 px-4 py-3 text-base leading-7 text-ink outline-none transition focus:border-brass"
+              placeholder="For example: use ChatGPT for work, organise research, write better prompts, build a weekly workflow, or understand what AI can and cannot do."
+            />
+          </label>
+
+          <label className="grid gap-3 text-sm text-ink">
+            <span className="font-medium">Availability or notes</span>
+            <textarea
+              rows={3}
+              value={form.availability}
+              onChange={(event) => updateField("availability", event.target.value)}
+              className="rounded-[1rem] border border-line bg-white/70 px-4 py-3 text-base leading-7 text-ink outline-none transition focus:border-brass"
+              placeholder="Useful times, accessibility needs, or anything else Patrick should know."
+            />
+          </label>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="submit"
+              disabled={!canSubmit || isSubmitting}
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper transition enabled:hover:bg-ink/90 disabled:cursor-not-allowed disabled:bg-ink/35"
+            >
+              {isSubmitting
+                ? autoRedirectsToCalendar
+                  ? "Saving brief..."
+                  : "Preparing brief..."
+                : autoRedirectsToCalendar
+                  ? "Save brief and continue"
+                  : "Continue"}
+            </button>
+            <p className="text-sm text-slate">
+              {autoRedirectsToCalendar
+                ? "We will take you straight to booking once the brief is saved."
+                : "Booking follows this short lesson brief."}
+            </p>
+          </div>
+          {submitError ? (
+            <p aria-live="polite" className="text-sm leading-6 text-[rgb(136,63,42)]">
+              {submitError}
+            </p>
+          ) : null}
+        </div>
+      </form>
+
+      <aside className="border-t border-line pt-5 lg:pt-0 lg:pl-2">
+        {!submitted ? (
+          <div className="max-w-sm">
+            <p className="page-eyebrow">What happens next</p>
+            <p className="mt-4 max-w-xs font-serif text-3xl leading-tight text-ink">
+              A little context makes the lesson immediately useful.
+            </p>
+            <div className="mt-8 border-t border-line">
+              {["Share what you want help with.", "Patrick reviews the lesson goal.", "Continue to scheduling when you are ready."].map((item) => (
+                <p key={item} className="border-b border-line py-4 text-sm leading-6 text-slate">
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="max-w-sm">
+            <p className="page-eyebrow">
+              {deliveryMode === "endpoint"
+                ? "Brief delivered"
+                : deliveryMode === "email"
+                  ? "Draft opened"
+                  : "Brief ready"}
+            </p>
+            <p className="mt-4 font-serif text-3xl leading-tight text-ink">
+              {deliveryMode === "endpoint"
+                ? "Your context is delivered. Continue to scheduling when you are ready."
+                : deliveryMode === "email"
+                  ? "Send the drafted note, then continue to scheduling."
+                  : "Copy the brief, then continue to scheduling."}
+            </p>
+            <p className="mt-5 whitespace-pre-line text-sm leading-6 text-slate">
+              {summary}
+            </p>
+            <div className="mt-6 flex flex-col gap-3">
+              {deliveryMode !== "endpoint" ? (
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition hover:bg-white/50"
+                >
+                  {copied ? "Brief copied" : "Copy brief"}
+                </button>
+              ) : null}
+              {calendarUrl ? (
+                <a
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 text-sm font-medium text-paper transition hover:bg-brass/90"
+                >
+                  Continue to scheduling
+                </a>
+              ) : (
+                <p className="text-sm leading-6 text-slate">
+                  Add <code>{siteConfig.calendarEnvName}</code> to enable the live scheduling handoff on this page.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+      </aside>
+    </div>
+  );
+}

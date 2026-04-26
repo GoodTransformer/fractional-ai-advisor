@@ -28,6 +28,10 @@ export function SiteHeader() {
     setMenuOpen(false);
   }, [pathname]);
 
+  if (isHome) {
+    return null;
+  }
+
   const shellClass = isHome && !scrolled
     ? "bg-ink/10 text-paper backdrop-blur-[2px]"
     : "border-b border-line bg-paper/88 text-ink shadow-[0_10px_40px_rgba(12,18,24,0.06)] backdrop-blur-xl";
@@ -69,6 +73,16 @@ export function SiteHeader() {
             })}
           </nav>
         </div>
+
+        <Link
+          href={siteConfig.primaryCta.href}
+          className={classNames(
+            "ml-auto hidden min-h-11 items-center gap-3 rounded-[0.35rem] bg-ink px-5 text-sm font-medium text-paper transition duration-500 hover:bg-ink/88 lg:inline-flex",
+          )}
+        >
+          {siteConfig.primaryCta.label}
+          <span aria-hidden="true">→</span>
+        </Link>
 
         <button
           type="button"

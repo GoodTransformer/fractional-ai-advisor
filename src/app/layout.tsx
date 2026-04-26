@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.offerName}`,
   },
   description:
-    "Embedded AI strategy and adoption lead for organisations that need AI direction, workflow change, and team capability to move together.",
+    "Personal 1-to-1 AI lessons and practical business advisory from Patrick Hussey at Good Transformer.",
 };
 
 export default function RootLayout({
