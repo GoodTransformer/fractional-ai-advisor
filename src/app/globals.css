@@ -764,9 +764,9 @@ details > summary::-webkit-details-marker {
 
 .hero-illustration {
   object-fit: cover;
-  object-position: center center;
+  object-position: center 38%;
   filter: saturate(0.95) contrast(0.98);
-  animation: heroPresence 42s ease-in-out infinite;
+  animation: heroPresence 120s ease-in-out infinite;
 }
 
 .hero-paper-plane {
@@ -1044,10 +1044,10 @@ details > summary::-webkit-details-marker {
 
 @keyframes heroPresence {
   0%, 100% {
-    transform: scale(0.91) translate3d(0, 0, 0);
+    transform: scale(0.96) translate3d(0, 0, 0);
   }
   50% {
-    transform: scale(0.96) translate3d(-0.25%, 0.15%, 0);
+    transform: scale(1.01) translate3d(-0.25%, 0.15%, 0);
   }
 }
 

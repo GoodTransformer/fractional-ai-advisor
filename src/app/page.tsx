@@ -22,7 +22,7 @@ const publicBasePath =
   process.env.GITHUB_ACTIONS === "true" && repository && !isUserPagesSite
     ? "/" + repository
     : "";
-const heroImageSrc = publicBasePath + "/hero/ai-coach-room-clean.png";
+const heroImageSrc = publicBasePath + "/hero/ChatGPT Image Apr 26, 2026 at 05_42_17 PM.png";
 
 export default function HomePage() {
   return (

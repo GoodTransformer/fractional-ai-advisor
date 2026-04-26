@@ -166,15 +166,6 @@ export function HomeHero({
             ))}
           </nav>
 
-          {/* CTA — filled dark to match the mockup */}
-          <Link
-            href={siteConfig.primaryCta.href}
-            className="ml-auto hidden min-h-10 items-center gap-2.5 rounded-[0.35rem] bg-ink px-5 text-sm font-medium text-paper transition duration-300 hover:bg-ink/85 lg:inline-flex"
-          >
-            {siteConfig.primaryCta.label}
-            <span aria-hidden="true">→</span>
-          </Link>
-
           {/* Mobile hamburger */}
           <button
             type="button"
