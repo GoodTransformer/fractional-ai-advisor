@@ -104,10 +104,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12 lg:py-24">
           <AnimatedReveal className="max-w-3xl">
             <h2 className="font-serif text-4xl leading-tight text-ink md:text-5xl">
-              Business support when AI needs to become working practice.
+              Fractional AI advisory for teams that need more than a workshop.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate md:text-lg">
-              The business work still exists, but it now sits as the organisation route: practical advisory, adoption support, and selected workflow change.
+              I work alongside your team as a part-time AI adviser — helping you move from scattered experiments to a coherent working practice. One engagement, or ongoing.
             </p>
           </AnimatedReveal>
 
