@@ -398,7 +398,7 @@ export const servicesPage = {
   businessSection: {
     heading: "Business AI advisory",
     intro:
-      "Fractional support for organisations that need AI to move from scattered experimentation into useful working practice.",
+      "Three ways to work together as a fractional AI adviser — from a focused sprint to an ongoing embedded retainer.",
     cta: { label: "Book a business call", href: "/book/business" },
   },
   sampleArc: [
