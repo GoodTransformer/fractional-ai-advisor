@@ -824,8 +824,17 @@ details > summary::-webkit-details-marker {
   line-height: 1;
 }
 
+.hero-route-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 0.75rem;
+}
+
 .hero-route-card {
   display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
   min-height: 11.4rem;
   align-content: start;
   gap: 1rem;
