@@ -160,7 +160,7 @@ export const offers: Offer[] = [
 
 export const testimonial = {
   quote:
-    "Their clarity and depth kickstarted our AI response, helping leadership not only see further but plan.",
+    "Patrick's clarity and depth kickstarted our AI response, helping leadership not only see further but plan.",
   attribution: "Gaynor Finlay, marketing leader",
 };
 
@@ -239,7 +239,7 @@ export const homePage = {
     routes: [
       {
         label: "For individuals",
-        title: "Book a personal AI lesson",
+        title: "Book a personal lesson",
         body: "1-to-1 help for beginners and improvers",
         href: "/book/personal",
         tone: "light",
@@ -426,33 +426,33 @@ export const servicesPage = {
 export const patrickPage = {
   title: "Patrick Hussey",
   intro:
-    "Patrick works with individuals who want to get better at using AI, and with organisations that need to turn AI intention into working practice. Either way, the approach is the same: practical, calm, and no interest in hype.",
+    "I work with individuals who want to get better at using AI, and with organisations that need to turn AI intention into working practice. Either way, my approach is the same: practical, calm, and not interested in hype.",
   portrait: {
     src: "/patrick/patrick-portrait.jpg",
     alt: "Patrick Hussey",
     caption:
-      "Every personal lesson is delivered by Patrick directly. No course platform, no junior coach, no script — just one-to-one time with the person you are hiring.",
+      "Every personal lesson is delivered by me directly. No course platform, no junior coach, no script — just one-to-one time with the person you are hiring.",
   },
   sections: [
     {
-      title: "How he works",
+      title: "How I work",
       body:
-        "Honest about what AI can and cannot do. Whether the work is a first personal lesson or a multi-team adoption programme, the job is to meet you where you are and leave you with something that works in the real world.",
+        "I try to be honest about what AI can and cannot do. Whether the work is a first personal lesson or a multi-team adoption programme, the job is to meet you where you are and leave you with something that works in the real world.",
     },
     {
       title: "Selected experience",
       body:
-        "Work with enterprise leaders at Google, SAP, Adobe, Microsoft, and Vodafone, alongside startups, charities, cultural organisations, and individuals at every level of AI fluency.",
+        "I have worked with enterprise leaders at Google, SAP, Adobe, Microsoft, and Vodafone, alongside startups, charities, cultural organisations, and individuals at every level of AI fluency.",
     },
     {
       title: "Writing and judgement",
       body:
-        "Writing has appeared in Fast Company and The Guardian. The tone of the offer is the same: clear judgement, practical language, and no interest in inflated AI theatre.",
+        "My writing has appeared in Fast Company and The Guardian. The tone of the work is the same: clear judgement, practical language, and no interest in inflated AI theatre.",
     },
     {
       title: "Boundary line",
       body:
-        "Patrick builds confidence, shapes direction, and helps individuals and teams adopt AI safely. He is not selling a software platform or a hidden engineering bench.",
+        "I help individuals build confidence, help leaders shape direction, and help teams adopt AI safely. I am not selling a software platform or a hidden engineering bench.",
     },
   ],
 };
