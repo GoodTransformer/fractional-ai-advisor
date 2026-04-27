@@ -342,7 +342,7 @@ export const lessonOffers = [
     name: "Business AI Advisory",
     label: "For teams",
     purpose:
-      "Fractional support for leaders who need AI to move from scattered experimentation into useful working practice.",
+      "Fractional AI advisory for leaders who need to turn scattered experiments into consistent working practice.",
     points: [
       "Clarify the highest-value use cases",
       "Create guardrails and adoption rhythm",
@@ -388,7 +388,7 @@ export const lessonPricing: {
 export const servicesPage = {
   title: "Services",
   intro:
-    "Two routes into better AI use. Personal lessons for individuals. Practical advisory for teams and businesses.",
+    "Two ways to work together: personal AI lessons for individuals, or fractional advisory for teams and businesses.",
   personalSection: {
     heading: "Personal AI lessons",
     intro:
