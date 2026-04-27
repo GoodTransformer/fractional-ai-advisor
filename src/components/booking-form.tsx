@@ -46,6 +46,15 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
+function buildCalUrl(baseUrl: string, params: { name?: string; email?: string }) {
+  if (!baseUrl) return baseUrl;
+  const qs = new URLSearchParams();
+  if (params.name) qs.set("name", params.name);
+  if (params.email) qs.set("email", params.email);
+  const query = qs.toString();
+  return query ? `${baseUrl}?${query}` : baseUrl;
+}
+
 function getMailtoHref(email: string, subject: string, body: string) {
   const trimmed = email.trim();
 
@@ -178,7 +187,7 @@ export function BookingForm() {
 
       if (nextMode === "endpoint" && calendarUrl) {
         window.setTimeout(() => {
-          window.location.assign(calendarUrl);
+          window.location.assign(buildCalUrl(calendarUrl, { email: form.workEmail.trim() }));
         }, 120);
       }
     } catch {
@@ -372,7 +381,7 @@ export function BookingForm() {
               ) : null}
               {calendarUrl ? (
                 <a
-                  href={calendarUrl}
+                  href={buildCalUrl(calendarUrl, { email: form.workEmail.trim() })}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex min-h-11 items-center justify-center rounded-full bg-copper px-5 text-sm font-medium text-paper transition hover:bg-copper/90"
@@ -550,7 +559,7 @@ export function PersonalBookingForm() {
 
       if (nextMode === "endpoint" && calendarUrl) {
         window.setTimeout(() => {
-          window.location.assign(calendarUrl);
+          window.location.assign(buildCalUrl(calendarUrl, { name: form.name.trim(), email: form.email.trim() }));
         }, 120);
       }
     } catch {
@@ -734,7 +743,7 @@ export function PersonalBookingForm() {
               ) : null}
               {calendarUrl ? (
                 <a
-                  href={calendarUrl}
+                  href={buildCalUrl(calendarUrl, { name: form.name.trim(), email: form.email.trim() })}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 text-sm font-medium text-paper transition hover:bg-brass/90"
