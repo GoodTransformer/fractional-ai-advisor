@@ -111,7 +111,7 @@ export const offers: Offer[] = [
   {
     name: "AI Reality Check Sprint",
     duration: "2 weeks",
-    purpose: "Clarity fast for leaders who need a real starting point.",
+    purpose: "Fast clarity on where AI fits, and a plan to act on it.",
     outputs: [
       "AI direction brief",
       "Use-case scorecard",
@@ -127,7 +127,7 @@ export const offers: Offer[] = [
   {
     name: "90-Day Adoption Build",
     duration: "12 weeks",
-    purpose: "For organisations stuck between intent and changed practice.",
+    purpose: "Embedded advisory to turn AI intent into real team habits.",
     outputs: [
       "Two lighthouse workflow pilots",
       "Team playbooks",
@@ -143,7 +143,7 @@ export const offers: Offer[] = [
   {
     name: "Fractional Retainer",
     duration: "3-month minimum",
-    purpose: "For ongoing cross-functional momentum and judgement.",
+    purpose: "Senior AI advisory alongside your team — no full-time hire.",
     outputs: [
       "Monthly executive session",
       "Working cadence across teams",
