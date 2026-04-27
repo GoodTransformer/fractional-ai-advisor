@@ -36,6 +36,10 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT }}
+          NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT }}
+          NEXT_PUBLIC_CLARITY_CALL_URL: ${{ secrets.NEXT_PUBLIC_CLARITY_CALL_URL }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
