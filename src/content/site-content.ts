@@ -332,9 +332,9 @@ export const lessonOffers = [
     purpose:
       "One-to-one sessions for beginners and improvers who want to use AI with more confidence, judgement, and speed.",
     points: [
-      "Learn ChatGPT and related tools around your own tasks",
-      "Build better prompting habits without jargon",
-      "Leave with repeatable workflows you can keep using",
+      "Learn the right tools for your tasks",
+      "Build better prompting habits",
+      "Leave with repeatable workflows",
     ],
     href: "/book/personal",
   },
