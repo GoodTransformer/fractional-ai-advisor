@@ -253,7 +253,7 @@ export function BookingForm() {
             </label>
           </div>
 
-          <fieldset className="grid gap-4">
+          <fieldset className="grid gap-6">
             <legend className="text-sm font-medium text-ink">What is happening now?</legend>
             <div className="grid gap-3">
               {bookingForm.currentState.map((item) => {
@@ -622,7 +622,7 @@ export function PersonalBookingForm() {
             </select>
           </label>
 
-          <fieldset className="grid gap-4">
+          <fieldset className="grid gap-6">
             <legend className="text-sm font-medium text-ink">Tools you want help with</legend>
             <div className="grid gap-3 sm:grid-cols-2">
               {personalTools.map((item) => {
