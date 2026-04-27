@@ -239,7 +239,7 @@ export const homePage = {
     routes: [
       {
         label: "For individuals",
-        title: "Book a personal lesson",
+        title: "Book a lesson",
         body: "1-to-1 help for beginners and improvers",
         href: "/book/personal",
         tone: "light",
