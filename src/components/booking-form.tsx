@@ -451,7 +451,7 @@ export function PersonalBookingForm() {
   const [submitError, setSubmitError] = useState("");
   const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("manual");
   const calendarUrl = getSafeHttpUrl(
-    process.env.NEXT_PUBLIC_CLARITY_CALL_URL ?? "",
+    process.env.NEXT_PUBLIC_PERSONAL_LESSON_URL ?? "",
   );
   const briefEndpoint = getSafeHttpUrl(
     process.env.NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT ?? "",
