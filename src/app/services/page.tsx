@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { AnimatedReveal } from "@/components/animated-reveal";
 import { PageIntro } from "@/components/page-intro";
-import { lessonPricing, offers, servicesPage, siteConfig } from "@/content/site-content";
+import { lessonPricing, offers, servicesPage } from "@/content/site-content";
 
 export const metadata: Metadata = {
   title: "Services",

@@ -66,7 +66,7 @@ export default function PatrickPage() {
 
             <AnimatedReveal className="border-t border-line pt-6">
               <p className="font-serif text-3xl leading-tight text-ink md:text-[2.1rem]">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </p>
               <p className="mt-4 text-sm leading-6 text-slate">
                 {testimonial.attribution}
