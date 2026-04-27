@@ -1,10 +1,10 @@
-# Fractional AI Advisor
+# Good Transformer
 
-A greenfield Next.js marketing site for the **Fractional AI Advisor** offer.
+Personal AI lessons and fractional AI advisory — [goodtransformer.ai](https://goodtransformer.ai)
 
 ## Stack
 
-- Next.js 15
+- Next.js 15 (static export)
 - TypeScript
 - Tailwind CSS
 
@@ -16,13 +16,12 @@ A greenfield Next.js marketing site for the **Fractional AI Advisor** offer.
 npm install
 ```
 
-2. Optional for local development: add a booking URL and brief-handoff destination in `.env.local`:
+2. Copy `.env.example` to `.env.local` and fill in your values:
 
 ```bash
+NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT=https://formspree.io/f/your-personal-form-id
+NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT=https://formspree.io/f/your-booking-form-id
 NEXT_PUBLIC_CLARITY_CALL_URL=https://your-calendar-link
-NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT=https://your-webhook-or-form-endpoint
-# or
-NEXT_PUBLIC_BOOKING_BRIEF_EMAIL=you@example.com
 ```
 
 3. Start the development server:
@@ -39,21 +38,15 @@ npm run build
 
 ## Project structure
 
-- `src/app` holds the four-page routed site: Home, Services, Patrick, and Book.
-- `src/content/site-content.ts` centralises the copy and structured content.
-- `src/components` holds the reusable layout, motion, CTA, FAQ, booking, and artefact components.
-- `public/hero-room.jpg` is the full-bleed home-page hero image.
+- `src/app` — pages: Home, Services, Patrick, About, Book
+- `src/content/site-content.ts` — all copy and structured content
+- `src/components` — layout, motion, CTA, FAQ, booking, and artefact components
+- `public/hero/hero-main.png` — home page hero illustration
 
-## Deployment notes
+## Deployment
 
-- The site is static-friendly and can be deployed on Vercel or any modern Next.js host.
-- GitHub Pages builds are static, so the public booking values used on `/book` must exist at build time.
-- This repo includes `.env.production` so the published site can hand off to Outlook Bookings and Formspree without relying on runtime environment variables.
-- For local overrides, set `NEXT_PUBLIC_CLARITY_CALL_URL`, `NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT`, or `NEXT_PUBLIC_BOOKING_BRIEF_EMAIL` in `.env.local`.
-- The site is intentionally small and product-page-led: one strong homepage plus three supporting pages.
+Deploys automatically to GitHub Pages on push to `main` via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
 
-## GitHub Pages
+Environment variables are injected at build time from GitHub Secrets (`NEXT_PUBLIC_FORMSPREE_PERSONAL_ENDPOINT`, `NEXT_PUBLIC_FORMSPREE_BOOKING_ENDPOINT`, `NEXT_PUBLIC_CLARITY_CALL_URL`). The `.env.production` file provides fallback values if secrets are not set.
 
-- The project is configured for GitHub Pages static export via [`.github/workflows/deploy-pages.yml`](/Users/patrickhussey/Desktop/Fractional%20AI%20champion%20site%20/.github/workflows/deploy-pages.yml).
-- On GitHub Actions, the Next.js config detects the repository name and applies the correct `basePath` and `assetPrefix` automatically for project pages.
-- Push to `main`, then enable **Settings → Pages → Build and deployment → Source: GitHub Actions** in the repository if GitHub does not switch it automatically on first deploy.
+The site uses a custom domain (`goodtransformer.ai`) — no `basePath` or `assetPrefix` is needed.
