@@ -330,7 +330,7 @@ export const lessonOffers = [
     name: "Personal AI Lessons",
     label: "For individuals",
     purpose:
-      "One-to-one sessions for beginners and improvers who want to use AI with more confidence, judgement, and speed.",
+      "One-to-one sessions for people who want more confidence, judgement, and speed with AI.",
     points: [
       "Learn the right tools for your tasks",
       "Build better prompting habits",
