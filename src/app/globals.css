@@ -764,6 +764,7 @@ details > summary::-webkit-details-marker {
   position: absolute;
   inset: -5%;
   z-index: 0;
+  transform: scale(0.92);
 }
 
 .hero-illustration {
