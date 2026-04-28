@@ -731,8 +731,12 @@ details > summary::-webkit-details-marker {
 
 /* Good Transformer 2026 direction */
 :root {
-  --color-brass: 165 112 30;
+  --color-brass: 0 140 149;
   --color-soft-blue: 216 232 236;
+  --color-accent-teal-deep: 0 111 122;
+  --color-accent-teal-bright: 0 166 178;
+  --color-accent-teal-wash: 214 243 244;
+  --color-warm-amber: 196 135 58;
 }
 
 .text-brass {
@@ -747,12 +751,12 @@ details > summary::-webkit-details-marker {
 
 .bg-warm-paper {
   background:
-    radial-gradient(circle at 82% 10%, rgba(165, 112, 30, 0.1), transparent 26%),
+    radial-gradient(circle at 82% 10%, rgba(0, 140, 149, 0.06), transparent 26%),
     linear-gradient(180deg, #f3eee2 0%, #ebe1d0 100%);
 }
 
 .hero-stage-v2 {
-  background: #dcecf0;
+  background: linear-gradient(180deg, #F3EEE6 0%, #F1ECE4 45%, #ECE5DB 100%);
   isolation: isolate;
 }
 
@@ -776,8 +780,8 @@ details > summary::-webkit-details-marker {
   width: 100%;
   background: linear-gradient(
     to right,
-    rgba(220, 236, 240, 0.30) 0%,
-    rgba(220, 236, 240, 0.08) 38%,
+    rgba(243, 238, 230, 0.45) 0%,
+    rgba(243, 238, 230, 0.12) 38%,
     transparent 56%
   );
 }
@@ -793,7 +797,7 @@ details > summary::-webkit-details-marker {
   pointer-events: none;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 38%, rgba(17, 32, 43, 0.16) 100%),
-    radial-gradient(circle at 72% 34%, rgba(165, 112, 30, 0.1), transparent 24%);
+    radial-gradient(circle at 72% 34%, rgba(0, 140, 149, 0.07), transparent 24%);
 }
 
 .hero-v2-copy {
@@ -851,7 +855,7 @@ details > summary::-webkit-details-marker {
 }
 
 .hero-route-card--light {
-  background: rgba(246, 238, 222, 0.9);
+  background: rgba(255, 253, 249, 0.97);
   color: rgb(var(--color-ink));
 }
 
@@ -1166,7 +1170,7 @@ details > summary::-webkit-details-marker {
   min-height: 100svh;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #dcecf0;
+  background: #F3EEE6;
   isolation: isolate;
 }
 

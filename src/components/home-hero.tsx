@@ -146,8 +146,9 @@ export function HomeHero({
         <div className="flex w-full items-center gap-6 py-4">
           <Link
             href="/"
-            className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
+            className="flex items-center gap-2 whitespace-nowrap text-sm font-bold uppercase tracking-[0.22em] text-ink transition-opacity hover:opacity-70"
           >
+            <img src="/logos/gt-logo.png" alt="" aria-hidden="true" className="h-8 w-auto" style={{filter: 'brightness(0) opacity(0.82)'}} />
             {siteConfig.brand}
           </Link>
 

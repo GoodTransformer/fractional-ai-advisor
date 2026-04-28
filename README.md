@@ -41,7 +41,28 @@ npm run build
 - `src/app` — pages: Home, Services, Patrick, About, Book
 - `src/content/site-content.ts` — all copy and structured content
 - `src/components` — layout, motion, CTA, FAQ, booking, and artefact components
-- `public/hero/hero-main.png` — home page hero illustration
+- `public/hero/hero-coach.png` — home page hero illustration (woman + coach robot)
+- `public/logos/gt-logo.png` — brand mark (circuit tree, transparent PNG)
+
+## Brand colours
+
+All variables are defined in `src/app/globals.css` and mapped to Tailwind utilities in `tailwind.config.ts`.
+
+| Variable | Value | Use |
+|---|---|---|
+| `--color-ink` | `#121B22` | Body text, headlines |
+| `--color-slate` | `#49535C` | Secondary text |
+| `--color-paper` | `#F1ECE4` | Light surface |
+| `--color-sand` | `#E9E2D6` | Alternate light surface |
+| `--color-mist` | `#CFC7BA` | Borders, dividers |
+| `--color-glow` | `#F8EDE0` | Warm highlight |
+| `--color-brass` | `#008C95` | Primary accent (teal) |
+| `--color-accent-teal-deep` | `#006F7A` | Teal on small text / high contrast |
+| `--color-accent-teal-bright` | `#00A6B2` | Arrows, icon rings, fine rules |
+| `--color-accent-teal-wash` | `#D6F3F4` | Teal tint backgrounds |
+| `--color-warm-amber` | `#C4873A` | Secondary accent — use sparingly |
+| `--color-copper` | `#70828D` | Blue-grey — form interactions |
+| `--color-soft-blue` | `#D8E8EC` | Section band backgrounds |
 
 ## Deployment
 

@@ -49,8 +49,9 @@ export function SiteHeader() {
         <div className="flex items-center gap-8 xl:gap-12">
           <Link
             href="/"
-            className="whitespace-nowrap text-sm font-medium uppercase tracking-[0.18em] transition-[color,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="flex items-center gap-2 whitespace-nowrap text-sm font-medium uppercase tracking-[0.18em] transition-[color,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           >
+            <img src="/logos/gt-logo.png" alt="" aria-hidden="true" className="h-8 w-auto" style={{filter: 'brightness(0) opacity(0.82)'}} />
             {siteConfig.brand}
           </Link>
 

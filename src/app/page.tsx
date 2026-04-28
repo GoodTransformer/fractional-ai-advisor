@@ -15,7 +15,7 @@ import {
 } from "@/content/site-content";
 import { publicBasePath } from "@/lib/public-base-path";
 
-const heroImageSrc = publicBasePath + "/hero/hero-main.webp";
+const heroImageSrc = publicBasePath + "/hero/hero-coach.png";
 
 export default function HomePage() {
   return (
